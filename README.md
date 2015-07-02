@@ -1,1 +1,4 @@
-# ISC-317-2012-
+# Programacion Logica
+## Prolog - X - C#
+### 3er Parcial
+====================================
