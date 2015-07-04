@@ -1,4 +1,4 @@
-% Houses
+% Casas
 house(frey,walder).
 house(frey,joyeuse).
 house(stark,rickard).
@@ -49,24 +49,29 @@ house(greyjoy,maron).
 house(greyjoy,rodrik).
 house(greyjoy,theon_greyjoy).
 
-% Kings
+house(House_name,Person):-married(Person,Partner),house(House_name,Partner).
+% End of Casas
+
+% Reyes
 king(baratheon,robert).
 king(lannister,tywin).
-king(aerys_ii).
+king(targaryen,aerys_ii).
 king(stark,rickard).
 king(tully,hoster).
 king(frey,walder).
+% Fin de Reyes
 
-% Relations
+% Relaciones
 married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
 married(kevan,dorna).
 married(kevan,dorma).
 married(robert,cersei).
-married(aerys_ii, rhaella).
+married(aerys_ii,rhaella).
 married(elia,rhaegar).
-married(daenerys,khal_drogo]).
+married(daenerys,khal_drogo).
+
 siblings([benjen,brandon,lyanina,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
 siblings([catelyn,lisa,edmure]).
@@ -77,11 +82,13 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+
 parent(robert,joffrey).
 parent(cersei,joffrey).
 parent(aerys_ii,rhaegar).
 parent(aerys_ii,daenerys).
-parent(rhaella,rhaegar,daenerys).
+parent(rhaella,rhaegar).
+parent(rhaella,daenerys).
 parent(eddard,robb).
 parent(eddard,sansa).
 parent(eddard,arya).
@@ -93,8 +100,9 @@ parent(catelyn,arya).
 parent(catelyn,bran).
 parent(catelyn,rickon).
 parent(rickard,eddard).
+% Fin de Relaciones
 
-% Genders
+% Generos
 gender(joffrey,man).
 gender(rickard,man).
 gender(eddard,man).
@@ -138,25 +146,21 @@ gender(margaery,woman).
 gender(viserys,woman).
 gender(rhaenys,woman).
 gender(renly,woman).
+% Fin de Generos
 
+% Reglas generales
+inheritsHouse(House,Person):- 
+	king(House,Parent), gender(Person,man), parent(Parent,Person).
 
-% Rules
-house(House_name,Person):-married(Person,Partner),house(House_name,Partner).
-
-inheritsHouse(House,Person) :- 
-	parent(Parent,Person),	king(House,Parent),	gender(Person,man).
-
-family(X,Y) :- house(Z,X), house(Z,Y).
+family(X,Y) :- house(Z,X), house(Z,Y), X \= Y.
 canInherit(House,Person):- 
 	inheritsHouse(House,Person);
-	(gender(Person,man),inheritsHouse(House,Parent));
-	canInherit(House,Parent). 
-
-
+	(gender(Person,man),parent(Parent, Person),inheritsHouse(House,Parent)).
 
 /* A AGREGAR */
-% [ ] Estado de Vida (Hecho)       -> Muerto/Vivo/Desterrado
+% [ ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [ ] Estado de Muertes (Hecho)    -> Quien mata a quien
 % [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
 % [ ] Episodio de Muerte (Hecho)   -> Donde muere un personaje
+
