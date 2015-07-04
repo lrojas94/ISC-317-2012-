@@ -11,10 +11,6 @@ Se trabajara con el lenguaje C# y el framework de Windows _WPF_
 - [ ] Comentar correctamente el codigo.
 
 ## Pantalla Principal
-La pantalla de personajes sera utilizada para mostrar informacion de cada uno de los personajes segun una busqueda. La idea es poder recolectar informacion sobre sus familiares, el reino al que pertenece, etc.
-
-La idea es presentar esto como un arbol genealogico en el cual se muestra su descendencia y reino, una imagen (deseable, no obligatorio), y una caja de informacion con su sexo, edad, etc.
-
 ### TODO:
 - [X] Implementar funcionalidad de TABs.
 
