@@ -6,5 +6,13 @@
         xmlns:local="clr-namespace:_3er_Parcial"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid/>
+    <Grid>
+        <TabControl x:Name="tabControl">
+            <TabItem x:Name="charactersTab" Header="Characters" Height="22" VerticalAlignment="Top">
+                <Frame x:Name="charactersFrame" Content="Frame" Margin="0,0,0,0" ClipToBounds="True" Background="#FFEE8383"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>
