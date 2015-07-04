@@ -1,3 +1,4 @@
+% Houses
 house(frey,walder).
 house(frey,joyeuse).
 house(stark,rickard).
@@ -48,6 +49,7 @@ house(greyjoy,maron).
 house(greyjoy,rodrik).
 house(greyjoy,theon_greyjoy).
 
+% Kings
 king(baratheon,robert).
 king(lannister,tywin).
 king(aerys_ii).
@@ -55,6 +57,7 @@ king(stark,rickard).
 king(tully,hoster).
 king(frey,walder).
 
+% Relations
 married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
@@ -63,17 +66,17 @@ married(kevan,dorma).
 married(robert,cersei).
 married(aerys_ii, rhaella).
 married(elia,rhaegar).
-married(daenerys,khal_drogo).
-siblings(benjen,brandon,lyanina,eddard).
-siblings(robb,sansa,arya,bran,rickon,jon_snow).
-siblings(catelyn,lisa,edmure).
-siblings(joffrey,myrcella,tommen).
-siblings(cersei,ser_jaime,tyrion).
-siblings(willas,garlan,margaery,loras_tyrell).
-siblings(rhaegar,viserys,daenerys).
-siblings(rhaenys,aegon).
-siblings(stannis,renly,robert).
-siblings(tywin,kevan).
+married(daenerys,khal_drogo]).
+siblings([benjen,brandon,lyanina,eddard]).
+siblings([robb,sansa,arya,bran,rickon,jon_snow]).
+siblings([catelyn,lisa,edmure]).
+siblings([joffrey,myrcella,tommen]).
+siblings([cersei,ser_jaime,tyrion]).
+siblings([willas,garlan,margaery,loras_tyrell]).
+siblings([rhaegar,viserys,daenerys]).
+siblings([rhaenys,aegon]).
+siblings([stannis,renly,robert]).
+siblings([tywin,kevan]).
 parent(robert,joffrey).
 parent(cersei,joffrey).
 parent(aerys_ii,rhaegar).
@@ -91,25 +94,69 @@ parent(catelyn,bran).
 parent(catelyn,rickon).
 parent(rickard,eddard).
 
-gender(joffrey,men).
-gender(rickard,men).
-gender(eddard,men).
-gender(bran,men).
+% Genders
+gender(joffrey,man).
+gender(rickard,man).
+gender(eddard,man).
+gender(bran,man).
+gender(robert,man).
+gender(rhaegar,man).
+gender(robb,man).
+gender(rickon,man).
+gender(walder,man).
+gender(tywin,man).
+gender(kevan,man).
+gender(khal_drogo,man).
+gender(benjen,man).
+gender(brandon,man).
+gender(jon_snow,man).
+gender(edmure,man).
+gender(tommen,man).
+gender(ser_jaime,man).
+gender(tyrion,man).
+gender(willas,man).
+gender(garlan,man).
+gender(aegon,man).
+gender(loras_tyrell,man).
+gender(aerys_ii,man).
+gender(stannis,man).
 
+gender(joyeuse,woman).
+gender(catelyn,woman).
+gender(joanna,woman).
+gender(dorna,woman).
+gender(cersei,woman).
+gender(rhaella,woman).
+gender(elia,woman).
+gender(daenerys,woman).
+gender(lyanina,woman).
+gender(sansa,woman).
+gender(arya,woman).
+gender(lisa,woman).
+gender(myrcella,woman).
+gender(margaery,woman).
+gender(viserys,woman).
+gender(rhaenys,woman).
+gender(renly,woman).
+
+
+% Rules
 house(House_name,Person):-married(Person,Partner),house(House_name,Partner).
 
-inheritsHouse(House,Person) :- parent(Parent,Person),king(House,Parent),gender(Person,men).
+inheritsHouse(House,Person) :- 
+	parent(Parent,Person),	king(House,Parent),	gender(Person,man).
 
-family(X,Y) :- house(Z,X),house(Z,Y).
-canInherit(House,Person):- inheritsHouse(House,Person);(
-    gender(Person,men),inheritsHouse(House,Parent)
-);canInherit(House,Parent). 
+family(X,Y) :- house(Z,X), house(Z,Y).
+canInherit(House,Person):- 
+	inheritsHouse(House,Person);
+	(gender(Person,man),inheritsHouse(House,Parent));
+	canInherit(House,Parent). 
 
 
 
 /* A AGREGAR */
-Estado de Vida (Hecho) -> Muerto/Vivo/Desterrado
-Estado de Muertes (Hecho) -> Quien mata a quien
-Numero de Nacimiento (Hecho) -> Orden de nacimiento
-Heredero al Trono (Regla) -> Hijo hombre, menor, vivo y hijo de Rey. 
-Episodio de Muerte (Hecho) -> Donde muere un personaje
+% [ ] Estado de Vida (Hecho)       -> Muerto/Vivo/Desterrado
+% [ ] Estado de Muertes (Hecho)    -> Quien mata a quien
+% [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
+% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
+% [ ] Episodio de Muerte (Hecho)   -> Donde muere un personaje
