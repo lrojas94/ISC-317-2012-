@@ -128,6 +128,10 @@ gender(aegon,man).
 gender(loras_tyrell,man).
 gender(aerys_ii,man).
 gender(stannis,man).
+gender(headsman,man).
+gender(the_hound,man).
+gender(roose_bolton,man).
+gender(baelish,man).
 
 gender(joyeuse,woman).
 gender(catelyn,woman).
@@ -148,6 +152,39 @@ gender(rhaenys,woman).
 gender(renly,woman).
 % Fin de Generos
 
+%Inicio de Estado de Vida
+state(eddard,dead).
+state(catelyn,dead).
+state(lusa,dead).
+state(robb,dead).
+state(tywin,dead).
+state(robert,dead).
+state(stannis,dead).
+state(renly,dead).
+state(joffrey,dead).
+state(khal_drogo,dead).
+state(viserys,dead).
+state(the_hound,dead).
+%Fin de Estado de Vida
+
+%Inicio Estado de Muertes
+killedby(eddard,headsman).
+killedby(robb,roose_bolton).
+killedby(catelyn,walder).
+killedby(joffrey,baelish).
+killedby(tywin,tyrion).
+killedby(viserys,khal_drogo).
+%Fin Estado de Muertes
+
+%Inicio de reinos enemigos
+enemies(lannister,stark).
+enemies(lannister,targaryen).
+enemies(grejoy,stark).
+enemies(lannister,lannister).
+%Fin de reinos enemigos
+
+
+
 % Reglas generales
 inheritsHouse(House,Person):- 
 	king(House,Parent), gender(Person,man), parent(Parent,Person).
@@ -158,9 +195,13 @@ canInherit(House,Person):-
 	(gender(Person,man),parent(Parent, Person),inheritsHouse(House,Parent)).
 
 /* A AGREGAR */
-% [ ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
-% [ ] Estado de Muertes (Hecho)    -> Quien mata a quien
+% [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
+% [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
 % [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
-% [ ] Episodio de Muerte (Hecho)   -> Donde muere un personaje
+% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos 
+                                    Esto puede que de problemas al usar la regla canmarry.
+% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del     
+                                        reino, ver quienes descendientes que pueden casarse
+
 
