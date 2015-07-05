@@ -6,7 +6,7 @@ house(stark,benjen).
 house(stark,brandon).
 house(stark,lyanna).
 house(stark,eddard).
-house(stark,john_snow).
+house(stark,jon_snow).
 house(stark,robb).
 house(stark,sansa).
 house(stark,arya).
@@ -68,12 +68,12 @@ married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
 married(kevan,dorna).
-married(kevan,dorma).
 married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
-married(daenerys,khal_drogo).
-
+married(khal_drogo,daenerys).
+married(Person,Partner):- married(Partner,Person), !.
+	
 siblings([benjen,brandon,lyanina,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
 siblings([catelyn,lisa,edmure]).
@@ -84,6 +84,23 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+
+descendance(kevan,    [lancel]).
+descendance(dorna,    [lancel]).
+descendance(aerys_ii, [rhaegar, viserys, daenerys]).
+descendance(rhaella,  [rhaegar, viserys, daenerys]).
+descendance(rhaegar,  [rhaenys, aegon]).
+descendance(balon,    [theon_greyjoy, asha, maron, rodrik]).
+descendance(tywin,    [cersei, ser_jaime, tyrion]).
+descendance(robert,   [joffrey, myrcella, tommen]).
+descendance(cersei,   [joffrey, myrcella, tommen]).
+descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
+descendance(rickard,  [benjen, brandon, lyanna]).
+descendance(hoster,   [catelyn, lisa, edmure]).
+descendance(jon, 	  [robin]).
+descendance(lisa, 	  [robin]).
+descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
+descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
 
 parent(robert,joffrey).
 parent(cersei,joffrey).
@@ -143,10 +160,10 @@ gender(cersei,woman).
 gender(rhaella,woman).
 gender(elia,woman).
 gender(daenerys,woman).
-gender(lyanina,woman).
+gender(lyanna,woman).
 gender(sansa,woman).
 gender(arya,woman).
-gender(lisa,woman).
+gender(lysa,woman).
 gender(myrcella,woman).
 gender(margaery,woman).
 gender(viserys,woman).
@@ -185,8 +202,6 @@ enemies(grejoy,stark).
 enemies(lannister,lannister).
 %Fin de reinos enemigos
 
-
-
 % Reglas generales
 inheritsHouse(House,Person) :-
 		king(House,Parent),
@@ -213,5 +228,3 @@ canInherit(House,Person) :-
                                     %Esto puede que de problemas al usar la regla canmarry.
 % [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del     
                                         %reino, ver quienes descendientes que pueden casarse
-
-
