@@ -24,6 +24,10 @@ namespace _3er_Parcial
         {
             InitializeComponent();
             charactersFrame.Content = new CharactersPage();
+            PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
+
+            PrologHandler.Instance.Query("canInherit(X,Y).");
+               
         }
     }
 }
