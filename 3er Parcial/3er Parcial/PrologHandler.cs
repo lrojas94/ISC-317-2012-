@@ -8,6 +8,11 @@ using Prolog;
 using Prolog.Code;
 namespace _3er_Parcial
 {
+    struct PrologResult {
+        public ExecutionResults Status;
+        public List<Dictionary<string, string>> Vars;
+    }
+
     class PrologHandler
     {
         private static PrologHandler instance;
@@ -36,28 +41,31 @@ namespace _3er_Parcial
             
         }
 
-        public List<Dictionary<string, string>> Query(string query) {
-            List<Dictionary<string, string>> output = new List<Dictionary<string, string>>();
+        public PrologResult Query(string query) {
 
+            PrologResult result = new PrologResult();
+            result.Vars = new List<Dictionary<string, string>>();
             query = ":-" + query; //Use the query form for Prolog.NET
             CodeSentence sentence = Parser.Parse(query)[0];
             Query q = new Prolog.Query(sentence);
-            PrologMachine machine = PrologMachine.Create(program, q);
-            ExecutionResults results = machine.RunToSuccess();
+            PrologMachine machine = PrologMachine.Create(program, q); 
+            result.Status = machine.RunToSuccess(); //First time run marks TRUE/FALSE result.
+            ExecutionResults resultStatus = result.Status;
             
-            while (results == ExecutionResults.Success)
+            while ( resultStatus == ExecutionResults.Success)
             {
                 PrologVariableList variables = machine.QueryResults.Variables;
-                Dictionary<string, string> result = new Dictionary<string, string>();
+                Dictionary<string, string> vars = new Dictionary<string, string>();
                 foreach (PrologVariable v in variables)
                 {
-                    result.Add(v.Name, v.Text);
+                    vars.Add(v.Name, v.Text);
                 }
-                output.Add(result);
-                results = machine.RunToSuccess();
+                if(vars.Count != 0)
+                    result.Vars.Add(vars);
+                resultStatus = machine.RunToSuccess();
             }
 
-            return output;
+            return result;
         }
 
         

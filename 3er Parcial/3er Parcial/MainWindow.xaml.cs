@@ -26,7 +26,7 @@ namespace _3er_Parcial
             charactersFrame.Content = new CharactersPage();
             PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
 
-            PrologHandler.Instance.Query("canInherit(X,Y).");
+            PrologHandler.Instance.Query("house(frey,walder).");
                
         }
     }
