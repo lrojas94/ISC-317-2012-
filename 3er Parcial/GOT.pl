@@ -51,7 +51,12 @@ house(greyjoy,theon_greyjoy).
 
 house(House_name,Person) :-
 	married(Person,Partner),
-	house(House_name,Partner).
+	house(House_name,Partner),
+	!.
+house(House_name,Person) :-
+	married(Partner,Person),
+	house(House_name,Partner),
+	!.
 % End of Casas
 
 % Reyes
@@ -208,10 +213,8 @@ canInherit(House,Person) :-
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
 % [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
-% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
-% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos 
+% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
+% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
-% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del     
+% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del
                                         %reino, ver quienes descendientes que pueden casarse
-
-

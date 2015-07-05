@@ -42,7 +42,8 @@ namespace _3er_Parcial
     class PrologHandler
     {
         private static PrologHandler instance;
-        private static Prolog.Program program;
+        private Prolog.Program program;
+
         private PrologHandler() {
             program = new Prolog.Program();
         }
