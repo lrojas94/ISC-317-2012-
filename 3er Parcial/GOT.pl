@@ -200,8 +200,8 @@ canInherit(House,Person):-
 % [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
 % [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos 
-                                    Esto puede que de problemas al usar la regla canmarry.
+                                    %Esto puede que de problemas al usar la regla canmarry.
 % [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del     
-                                        reino, ver quienes descendientes que pueden casarse
+                                        %reino, ver quienes descendientes que pueden casarse
 
 
