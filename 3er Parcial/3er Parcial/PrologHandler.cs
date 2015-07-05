@@ -28,6 +28,15 @@ namespace _3er_Parcial
         public PrologResult(ExecutionResults initialStatus) {
             status = initialStatus;
         }
+
+        public List<string> VariableWithName(string name) {
+            List<string> returnValue = new List<string>();
+            foreach (Dictionary<string,string> result in vars)
+            {
+                returnValue.Add(result[name]);
+            }
+            return returnValue;
+        }
     }
 
     class PrologHandler

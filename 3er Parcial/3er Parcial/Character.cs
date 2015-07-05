@@ -40,7 +40,6 @@ namespace _3er_Parcial
                     default:
                         return (SolidColorBrush)(new BrushConverter().ConvertFrom("#2c3e50")); //MIDNIGHT BLUE (Black)
                 }
-
             }
         }
 
