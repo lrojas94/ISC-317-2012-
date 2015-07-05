@@ -22,11 +22,10 @@ namespace _3er_Parcial
     {
         public MainWindow()
         {
+
+            PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
             InitializeComponent();
             charactersFrame.Content = new CharactersPage();
-            PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
-
-            PrologHandler.Instance.Query("house(frey,walder).");
                
         }
     }

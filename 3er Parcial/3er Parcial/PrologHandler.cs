@@ -8,9 +8,26 @@ using Prolog;
 using Prolog.Code;
 namespace _3er_Parcial
 {
-    struct PrologResult {
-        public ExecutionResults Status;
-        public List<Dictionary<string, string>> Vars;
+    class PrologResult {
+        private ExecutionResults status;
+        public ExecutionResults Status {
+            get {
+                return status;
+            }
+        }
+        private List<Dictionary<string, string>> vars = new List<Dictionary<string, string>>();
+        public List<Dictionary<string, string>> Vars {
+            get {
+                return vars;
+            }
+            set {
+                vars = value;
+            }
+        }
+
+        public PrologResult(ExecutionResults initialStatus) {
+            status = initialStatus;
+        }
     }
 
     class PrologHandler
@@ -42,14 +59,13 @@ namespace _3er_Parcial
         }
 
         public PrologResult Query(string query) {
-
-            PrologResult result = new PrologResult();
-            result.Vars = new List<Dictionary<string, string>>();
+            
             query = ":-" + query; //Use the query form for Prolog.NET
             CodeSentence sentence = Parser.Parse(query)[0];
             Query q = new Prolog.Query(sentence);
-            PrologMachine machine = PrologMachine.Create(program, q); 
-            result.Status = machine.RunToSuccess(); //First time run marks TRUE/FALSE result.
+            PrologMachine machine = PrologMachine.Create(program, q);
+
+            PrologResult result = new PrologResult(machine.RunToSuccess());//First time run marks TRUE/FALSE result.
             ExecutionResults resultStatus = result.Status;
             
             while ( resultStatus == ExecutionResults.Success)

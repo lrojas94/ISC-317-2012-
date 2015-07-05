@@ -9,5 +9,18 @@
       "
       Title="CharactersPage">
 
-    <Grid Background="#FFECF0F1"/>
+    <Grid Background="#FFECF0F1">
+        <ComboBox x:Name="CharacterNamesCB" Margin="10,41,10,0" VerticalAlignment="Top" SelectionChanged="CharacterNamesCB_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,2" VerticalAlignment="Center">
+                        <Rectangle Fill="{Binding Path=GenderColor}" Height="20" Width="20" RadiusX="10" RadiusY="10" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label x:Name="characterListLabel" Content="Personajes de la Serie" VerticalAlignment="Top" RenderTransformOrigin="2.396,0.689" Margin="0,10,10,0" HorizontalAlignment="Right" Width="125"/>
+        <Ellipse DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}"  Fill="{Binding Path=GenderColor}" Height="100" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+    </Grid>
 </Page>
