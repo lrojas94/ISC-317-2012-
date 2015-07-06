@@ -69,6 +69,7 @@ king(frey,walder).
 % Fin de Reyes
 
 % Relaciones
+married(jon, lysa).
 married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
@@ -115,10 +116,12 @@ parent(Parent, Person):-
 
 % Generos
 gender(joffrey,man).
+gender(jon,man).
 gender(rickard,man).
 gender(eddard,man).
 gender(bran,man).
 gender(robert,man).
+gender(renly,man).
 gender(rhaegar,man).
 gender(robb,man).
 gender(rickon,man).
@@ -143,6 +146,10 @@ gender(headsman,man).
 gender(the_hound,man).
 gender(roose_bolton,man).
 gender(baelish,man).
+gender(viserys,man).
+gender(maron,man).
+gender(rodrik,man).
+gender(theon_greyjoy,man).
 
 gender(joyeuse,woman).
 gender(catelyn,woman).
@@ -155,15 +162,15 @@ gender(daenerys,woman).
 gender(lyanna,woman).
 gender(sansa,woman).
 gender(arya,woman).
+gender(asha,woman).
 gender(lysa,woman).
 gender(myrcella,woman).
 gender(margaery,woman).
-gender(viserys,woman).
 gender(rhaenys,woman).
-gender(renly,woman).
 % Fin de Generos
 
 %Inicio de Estado de Vida
+state(jon,dead).
 state(eddard,dead).
 state(catelyn,dead).
 state(lysa,dead).
@@ -176,12 +183,16 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
-state(_, alive).
+
+state(jon_snow,exiled).
+
+state(Person, alive):- not(state(Person, dead)).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
 killedby(eddard,headsman).
 killedby(robb,roose_bolton).
+killedby(lysa,baelish).
 killedby(catelyn,walder).
 killedby(joffrey,baelish).
 killedby(tywin,tyrion).
@@ -212,6 +223,14 @@ canInherit(House,Person) :-
 		parent(Parent, Person),
 		inheritsHouse(House,Parent).
 
+canMarry(X, Y):- 
+		gender(X, GX), state(X, alive), house(HX, X),
+		not(marriedWith(X, PX); married(X, PX)), 
+		(GX == man, gender(Y, woman); GX == woman, gender(Y, man)),
+		state(Y, alive), house(HY, Y), (HX \= HY),
+		not(marriedWith(Y, PY); married(Y, PY)).
+		
+
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
@@ -219,5 +238,5 @@ canInherit(House,Person) :-
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
 % [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
-% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del
-                                        %reino, ver quienes descendientes que pueden casarse
+% [DONE ] canmarry (Regla)  		   -> Dependiendo del estado de vida y la relacion del
+                                        %reino, ver cuales descendientes pueden casarse
