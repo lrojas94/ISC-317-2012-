@@ -6,7 +6,7 @@ house(stark,benjen).
 house(stark,brandon).
 house(stark,lyanna).
 house(stark,eddard).
-house(stark,john_snow).
+house(stark,jon_snow).
 house(stark,robb).
 house(stark,sansa).
 house(stark,arya).
@@ -51,7 +51,12 @@ house(greyjoy,theon_greyjoy).
 
 house(House_name,Person) :-
 	married(Person,Partner),
-	house(House_name,Partner).
+	house(House_name,Partner),
+	!.
+house(House_name,Person) :-
+	married(Partner,Person),
+	house(House_name,Partner),
+	!.
 % End of Casas
 
 % Reyes
@@ -68,15 +73,15 @@ married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
 married(kevan,dorna).
-married(kevan,dorma).
 married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
-married(daenerys,khal_drogo).
-
-siblings([benjen,brandon,lyanina,eddard]).
+married(khal_drogo,daenerys).
+married(Person,Partner):- married(Partner,Person), !.
+	
+siblings([benjen,brandon,lyanna,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
-siblings([catelyn,lisa,edmure]).
+siblings([catelyn,lysa,edmure]).
 siblings([joffrey,myrcella,tommen]).
 siblings([cersei,ser_jaime,tyrion]).
 siblings([willas,garlan,margaery,loras_tyrell]).
@@ -84,6 +89,23 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+
+descendance(kevan,    [lancel]).
+descendance(dorna,    [lancel]).
+descendance(aerys_ii, [rhaegar, viserys, daenerys]).
+descendance(rhaella,  [rhaegar, viserys, daenerys]).
+descendance(rhaegar,  [rhaenys, aegon]).
+descendance(balon,    [theon_greyjoy, asha, maron, rodrik]).
+descendance(tywin,    [cersei, ser_jaime, tyrion]).
+descendance(robert,   [joffrey, myrcella, tommen]).
+descendance(cersei,   [joffrey, myrcella, tommen]).
+descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
+descendance(rickard,  [benjen, brandon, lyanna, eddard]).
+descendance(hoster,   [catelyn, lysa, edmure]).
+descendance(jon, 	  [robin]).
+descendance(lysa, 	  [robin]).
+descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
+descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
 
 parent(robert,joffrey).
 parent(cersei,joffrey).
@@ -143,10 +165,10 @@ gender(cersei,woman).
 gender(rhaella,woman).
 gender(elia,woman).
 gender(daenerys,woman).
-gender(lyanina,woman).
+gender(lyanna,woman).
 gender(sansa,woman).
 gender(arya,woman).
-gender(lisa,woman).
+gender(lysa,woman).
 gender(myrcella,woman).
 gender(margaery,woman).
 gender(viserys,woman).
@@ -157,7 +179,7 @@ gender(renly,woman).
 %Inicio de Estado de Vida
 state(eddard,dead).
 state(catelyn,dead).
-state(lusa,dead).
+state(lysa,dead).
 state(robb,dead).
 state(tywin,dead).
 state(robert,dead).
@@ -167,6 +189,7 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
+state(Person, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
@@ -184,8 +207,6 @@ enemies(lannister,targaryen).
 enemies(grejoy,stark).
 enemies(lannister,lannister).
 %Fin de reinos enemigos
-
-
 
 % Reglas generales
 inheritsHouse(House,Person) :-
@@ -207,11 +228,9 @@ canInherit(House,Person) :-
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
-% [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
-% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey. 
-% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos 
+% [DONE ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
+% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
+% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
-% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del     
+% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del
                                         %reino, ver quienes descendientes que pueden casarse
-
-
