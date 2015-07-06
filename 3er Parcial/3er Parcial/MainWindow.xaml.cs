@@ -22,9 +22,10 @@ namespace _3er_Parcial
     {
         public MainWindow()
         {
-
+            PrologHandler.Instance.LoadFile(@"..\..\..\prologBasics.pl");
             PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
             InitializeComponent();
+            PrologHandler.Instance.Query("siblings(robb,X)");
             charactersFrame.Content = new CharactersPage();
             canmarryFrame.Content = new CanMarryRulePage();
                

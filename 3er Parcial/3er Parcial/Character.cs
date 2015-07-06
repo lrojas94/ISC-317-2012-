@@ -18,7 +18,7 @@ namespace _3er_Parcial
         private List<string> houses;
         private BitmapImage houseImage;
         private TextInfo Formatter = new CultureInfo("en-US", false).TextInfo;
-
+        private List<string> siblings;
 
         public string Name {
             get {
@@ -88,9 +88,7 @@ namespace _3er_Parcial
                     Uri uri = new Uri("pack://application:,,,/Images/"+MainHouse+".png");
                     houseImage = new BitmapImage(uri);
                 }
-
                 return houseImage;
-
             }
 
         }
@@ -105,6 +103,26 @@ namespace _3er_Parcial
                     default:
                         return (SolidColorBrush)(new BrushConverter().ConvertFrom("#2c3e50")); //MIDNIGHT BLUE (Black)
                 }
+            }
+        }
+
+        public List<string> Siblings {
+            get{
+                if (siblings == null) {
+                    string query = String.Format("siblings({0},Sib).", name);
+                    PrologResult data = PrologHandler.Instance.Query(query);
+                    siblings = new List<string>();
+                    if (data.Status == Prolog.ExecutionResults.Success) {
+                        //We're sure it HAS to return only 1 Variable result.
+                        string unparsedData = data.Vars[0]["Sib"];
+                        unparsedData = unparsedData.Replace("[", "");
+                        unparsedData = unparsedData.Replace("]", "");
+                        siblings = unparsedData.Split(',').ToList();
+                    }
+
+                }
+
+                return siblings;
             }
         }
 

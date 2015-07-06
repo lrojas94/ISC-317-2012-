@@ -90,6 +90,7 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+siblings(Person,Siblings) :- siblings(X),member(Person,X),delete(X,Person,Siblings).
 
 descendance(kevan,    [lancel]).
 descendance(dorna,    [lancel]).
@@ -103,7 +104,7 @@ descendance(cersei,   [joffrey, myrcella, tommen]).
 descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
 descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
-descendance(jon, 	  [robin]).
+descendance(jon, 	    [robin]).
 descendance(lysa, 	  [robin]).
 descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
 descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
