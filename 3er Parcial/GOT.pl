@@ -89,6 +89,7 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+siblings(Person,Siblings) :- siblings(X),member(Person,X),delete(X,Person,Siblings).
 
 descendance(kevan,    [lancel]).
 descendance(dorna,    [lancel]).
