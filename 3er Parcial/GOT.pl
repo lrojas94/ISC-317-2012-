@@ -54,7 +54,7 @@ house(House_name,Person) :-
 	house(House_name,Partner),
 	!.
 house(House_name,Person) :-
-	married(Partner,Person),
+	marriedWith(Person,Partner),
 	house(House_name,Partner),
 	!.
 % End of Casas
@@ -77,8 +77,9 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-married(Person,Partner):- married(Partner,Person), !.
-	
+marriedWith(Person,Partner):-married(Partner,Person).
+
+
 siblings([benjen,brandon,lyanna,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
 siblings([catelyn,lysa,edmure]).

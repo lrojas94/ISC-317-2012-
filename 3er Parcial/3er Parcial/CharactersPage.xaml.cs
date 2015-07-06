@@ -29,10 +29,6 @@ namespace _3er_Parcial
             CharacterNamesCB.SelectedIndex = 0;
            
         }
-
-        private void CharacterNamesCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
