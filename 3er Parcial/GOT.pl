@@ -1,8 +1,3 @@
-% Funciones Basicas
-member(Member,[]):- false.
-member(Member,[Member|List]) :- true,!.
-member(Member,[Elem|List]) :- member(Member,List).
-
 % Casas
 house(frey,walder).
 house(frey,joyeuse).
