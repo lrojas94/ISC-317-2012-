@@ -90,6 +90,8 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+siblings(Person,Siblings) :- siblings(List),member(Person,List),delete(List,Person,Siblings).
+
 
 descendance(kevan,    [lancel]).
 descendance(dorna,    [lancel]).

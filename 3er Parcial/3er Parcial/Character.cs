@@ -24,7 +24,7 @@ namespace _3er_Parcial
             get {
                 string tempName = "";
                 tempName = name.Replace('_', ' ');
-                tempName = Formatter.ToTitleCase(tempName);
+                tempName = Formatter.ToTitleCase(tempName).Trim();
                 return tempName;
             }
         }
@@ -41,7 +41,7 @@ namespace _3er_Parcial
                 }
                 string _houses = "";
                 foreach (string house in houses)
-                    _houses+=(Formatter.ToTitleCase(house))+"\n";
+                    _houses+=(Formatter.ToTitleCase(house))+" / ";
                 return _houses;
             } 
         }
