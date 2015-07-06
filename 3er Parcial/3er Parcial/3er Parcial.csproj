@@ -61,8 +61,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CanMarryRulePage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CharactersPage.xaml">
       <SubType>Designer</SubType>
@@ -75,9 +75,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CanMarryRulePage.xaml.cs">
-      <DependentUpon>CanMarryRulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Character.cs" />
     <Compile Include="CharactersModel.cs" />

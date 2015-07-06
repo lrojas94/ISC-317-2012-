@@ -69,6 +69,7 @@ king(frey,walder).
 % Fin de Reyes
 
 % Relaciones
+married(jon, lysa).
 married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
@@ -77,8 +78,7 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-marriedWith(Person,Partner):-married(Partner,Person).
-
+marriedWith(Person,Partner):- married(Partner,Person).
 
 siblings([benjen,brandon,lyanna,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
@@ -106,34 +106,22 @@ descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
 descendance(jon, 	    [robin]).
 descendance(lysa, 	  [robin]).
-descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
-descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
+descendance(eddard,   [jon_snow, robb, sansa, arya, bran, rickon]).
+descendance(catelyn,  [robb, sansa, arya, bran, rickon]).
 
-parent(robert,joffrey).
-parent(cersei,joffrey).
-parent(aerys_ii,rhaegar).
-parent(aerys_ii,daenerys).
-parent(rhaella,rhaegar).
-parent(rhaella,daenerys).
-parent(eddard,robb).
-parent(eddard,sansa).
-parent(eddard,arya).
-parent(eddard,bran).
-parent(eddard,rickon).
-parent(catelyn,robb).
-parent(catelyn,sansa).
-parent(catelyn,arya).
-parent(catelyn,bran).
-parent(catelyn,rickon).
-parent(rickard,eddard).
+parent(Parent, Person):-
+	descendance(Parent, Descendance),
+	member(Person, Descendance).
 % Fin de Relaciones
 
 % Generos
 gender(joffrey,man).
+gender(jon,man).
 gender(rickard,man).
 gender(eddard,man).
 gender(bran,man).
 gender(robert,man).
+gender(renly,man).
 gender(rhaegar,man).
 gender(robb,man).
 gender(rickon,man).
@@ -158,6 +146,10 @@ gender(headsman,man).
 gender(the_hound,man).
 gender(roose_bolton,man).
 gender(baelish,man).
+gender(viserys,man).
+gender(maron,man).
+gender(rodrik,man).
+gender(theon_greyjoy,man).
 
 gender(joyeuse,woman).
 gender(catelyn,woman).
@@ -170,15 +162,15 @@ gender(daenerys,woman).
 gender(lyanna,woman).
 gender(sansa,woman).
 gender(arya,woman).
+gender(asha,woman).
 gender(lysa,woman).
 gender(myrcella,woman).
 gender(margaery,woman).
-gender(viserys,woman).
 gender(rhaenys,woman).
-gender(renly,woman).
 % Fin de Generos
 
 %Inicio de Estado de Vida
+state(jon,dead).
 state(eddard,dead).
 state(catelyn,dead).
 state(lysa,dead).
@@ -191,12 +183,16 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
-state(Person, alive).
+
+state(jon_snow,exiled).
+
+state(Person, alive):- not(state(Person, dead)).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
 killedby(eddard,headsman).
 killedby(robb,roose_bolton).
+killedby(lysa,baelish).
 killedby(catelyn,walder).
 killedby(joffrey,baelish).
 killedby(tywin,tyrion).
@@ -227,6 +223,14 @@ canInherit(House,Person) :-
 		parent(Parent, Person),
 		inheritsHouse(House,Parent).
 
+canMarry(X, Y):- 
+		gender(X, GX), state(X, alive), house(HX, X),
+		not(marriedWith(X, PX); married(X, PX)), 
+		(GX == man, gender(Y, woman); GX == woman, gender(Y, man)),
+		state(Y, alive), house(HY, Y), (HX \= HY),
+		not(marriedWith(Y, PY); married(Y, PY)).
+		
+
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
@@ -234,5 +238,5 @@ canInherit(House,Person) :-
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
 % [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
-% [ ] canmarry (Regla)  -> Dependiendo del estado de vida y la relacion del
-                                        %reino, ver quienes descendientes que pueden casarse
+% [DONE ] canmarry (Regla)  		   -> Dependiendo del estado de vida y la relacion del
+                                        %reino, ver cuales descendientes pueden casarse

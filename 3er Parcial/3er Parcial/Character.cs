@@ -19,6 +19,7 @@ namespace _3er_Parcial
         private BitmapImage houseImage;
         private TextInfo Formatter = new CultureInfo("en-US", false).TextInfo;
         private List<string> siblings;
+        private string kingOfHouse = null;
 
         public string Name {
             get {
@@ -28,7 +29,7 @@ namespace _3er_Parcial
                 return tempName;
             }
         }
-
+        
         public string Gender {
             get {
                 return Formatter.ToTitleCase(gender);
@@ -59,7 +60,7 @@ namespace _3er_Parcial
                         }
                     }
                     else {
-                        houses.Add("None");
+                        houses.Add("none");
                     }
                 }
 
@@ -106,6 +107,37 @@ namespace _3er_Parcial
             }
         }
 
+        public string KingOfHouse {
+            get {
+                if (kingOfHouse == null) {
+                    string query = String.Format("king(Kingdom,{0}).", name);
+                    PrologResult data = PrologHandler.Instance.Query(query);
+                    if (data.Status == Prolog.ExecutionResults.Success)
+                    {
+                        kingOfHouse = data.Vars[0]["Kingdom"];
+                    }
+                    else
+                        kingOfHouse = "None";
+                }
+
+                return kingOfHouse;
+            }
+        }
+
+        public BitmapImage IsKing {
+            get {
+                if (KingOfHouse == "None")
+                {
+                    return null;
+                }
+                else
+                {
+                    Uri uri = new Uri("pack://application:,,,/Images/crown.png");
+                    return new BitmapImage(uri);
+                }
+            }
+        }
+
         public List<string> Siblings {
             get{
                 if (siblings == null) {
@@ -123,6 +155,17 @@ namespace _3er_Parcial
                 }
 
                 return siblings;
+            }
+        }
+
+        public List<string> FormattedSiblings {
+            get {
+                List<string> fSiblings = new List<string>();
+                List<string> tempSiblings = Siblings;
+                for(int i = 0; i < tempSiblings.Count; i++)
+                   fSiblings.Add(siblings[i] = Formatter.ToTitleCase(tempSiblings[i].Replace("_", " ")));
+
+                return fSiblings;
             }
         }
 
