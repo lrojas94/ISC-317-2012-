@@ -126,6 +126,17 @@ namespace _3er_Parcial
             }
         }
 
+        public List<string> FormattedSiblings {
+            get {
+                List<string> fSiblings = new List<string>();
+                List<string> tempSiblings = Siblings;
+                for(int i = 0; i < tempSiblings.Count; i++)
+                   fSiblings.Add(siblings[i] = Formatter.ToTitleCase(tempSiblings[i].Replace("_", " ")));
+
+                return fSiblings;
+            }
+        }
+
         public Character(string name, string gender) {
             this.name = name;
             this.gender = gender;
