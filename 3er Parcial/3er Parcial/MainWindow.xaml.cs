@@ -25,7 +25,6 @@ namespace _3er_Parcial
             PrologHandler.Instance.LoadFile(@"..\..\..\prologBasics.pl");
             PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
             InitializeComponent();
-            PrologHandler.Instance.Query("siblings(robb,X)");
             charactersFrame.Content = new CharactersPage();
                
         }
