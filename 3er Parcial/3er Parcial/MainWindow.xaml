@@ -11,6 +11,9 @@
             <TabItem x:Name="charactersTab" Header="Characters" Height="22" VerticalAlignment="Top">
                 <Frame x:Name="charactersFrame" Content="Frame" Margin="0,0,0,0" ClipToBounds="True" Background="#FFEE8383"/>
             </TabItem>
+            <TabItem x:Name="canmarryTab" Header="Can Marry" Height="22" VerticalAlignment="Top">
+                <Frame x:Name="canmarryFrame" Content="Frame" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
+            </TabItem>
             <TabItem Header="TabItem">
             </TabItem>
         </TabControl>
