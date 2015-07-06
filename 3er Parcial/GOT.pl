@@ -90,6 +90,7 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
+siblings(Person,Siblings) :- siblings(X),member(Person,X),delete(X,Person,Siblings).
 
 descendance(kevan,    [lancel]).
 descendance(dorna,    [lancel]).
@@ -190,7 +191,7 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
-state(Person, alive).
+state(_, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
