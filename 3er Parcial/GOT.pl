@@ -50,10 +50,6 @@ house(greyjoy,rodrik).
 house(greyjoy,theon_greyjoy).
 
 house(House_name,Person) :-
-	married(Person,Partner),
-	house(House_name,Partner),
-	!.
-house(House_name,Person) :-
 	marriedWith(Person,Partner),
 	house(House_name,Partner),
 	!.
@@ -78,10 +74,12 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-marriedWith(Person,Partner):- married(Partner,Person).
+marriedWith(Person,Partner):-
+		married(Person,Partner);
+		married(Partner,Person).
 
 siblings([benjen,brandon,lyanna,eddard]).
-siblings([robb,sansa,arya,bran,rickon,jon_snow]).
+siblings([jon_snow,robb,sansa,arya,bran,rickon]).
 siblings([catelyn,lysa,edmure]).
 siblings([joffrey,myrcella,tommen]).
 siblings([cersei,ser_jaime,tyrion]).
@@ -90,7 +88,9 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
-siblings(Person,Siblings) :- siblings(X),member(Person,X),delete(X,Person,Siblings).
+siblings(Person,Siblings) :- 
+		siblings(Generation),member(Person,Generation),
+		delete(Generation,Person,Siblings).
 
 descendance(kevan,    [lancel]).
 descendance(dorna,    [lancel]).
@@ -104,7 +104,7 @@ descendance(cersei,   [joffrey, myrcella, tommen]).
 descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
 descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
-descendance(jon, 	    [robin]).
+descendance(jon, 	  [robin]).
 descendance(lysa, 	  [robin]).
 descendance(eddard,   [jon_snow, robb, sansa, arya, bran, rickon]).
 descendance(catelyn,  [robb, sansa, arya, bran, rickon]).
@@ -176,6 +176,7 @@ state(catelyn,dead).
 state(lysa,dead).
 state(robb,dead).
 state(tywin,dead).
+state(joanna,dead).
 state(robert,dead).
 state(stannis,dead).
 state(renly,dead).
@@ -183,10 +184,27 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
+state(maron,dead).
+state(rodrik,dead).
+state(lyanna,dead).
+state(brandon,dead).
+state(rickard,dead).
+state(rhaenys,dead).
+state(aegon,dead).
+state(rhaegar,dead).
+state(elia,dead).
+state(aerys_ii,dead).
+state(rhaella,dead).
 
 state(jon_snow,exiled).
 
-state(Person, alive):- not(state(Person, dead)).
+state(theon_greyjoy,disinherited).
+state(viserys,disinherited).
+%state(daenerys,disinherited).	-- Confuso por la imagen fuente.
+
+state(Person, alive):- 
+	not(state(Person, dead)), 
+	not(killedby(Person, Killer)).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
@@ -196,46 +214,74 @@ killedby(lysa,baelish).
 killedby(catelyn,walder).
 killedby(joffrey,baelish).
 killedby(tywin,tyrion).
+killedby(joanna,tyrion).
+killedby(aerys_ii,ser_jaime).
 killedby(viserys,khal_drogo).
+killedby(brandon,rhaegar).
+killedby(lyanna,rhaegar).
+killedby(maron,robert).
+killedby(rodrik,robert).
 %Fin Estado de Muertes
 
 %Inicio de reinos enemigos
 enemies(lannister,stark).
 enemies(lannister,targaryen).
 enemies(grejoy,stark).
-enemies(lannister,lannister).
+enemies(grejoy,baratheon).
+
+areEnemies(House_A, House_B):- 
+		(enemies(House_A, House_B); enemies(House_B, House_A)),
+		(House_A \= House_B).
 %Fin de reinos enemigos
+
+%Inicio de rivales
+rivals(sandor_clegane, ser_gregor_clegane).
+rivals(balon, robert).
+
+%Fin de rivales
 
 % Reglas generales
 inheritsHouse(House,Person) :-
 		king(House,Parent),
+		%house(House,Person), -- Inestable
 		gender(Person,man),
-		parent(Parent,Person).
+		parent(Parent,Person),
+		not(state(Person, exiled)),
+		not(state(Person, disinherited)).
 
 family(X,Y) :-
 		house(Z,X),
 		house(Z,Y),
 		X \= Y.
+		
 canInherit(House,Person) :-
 		inheritsHouse(House,Person).
 canInherit(House,Person) :-
+		house(House,Person),
 		gender(Person,man),
+		not(state(Person, exiled)),
+		not(state(Person, disinherited)),
 		parent(Parent, Person),
 		inheritsHouse(House,Parent).
 
+inheritor(House, Inheritor):-
+		canInherit(House, Inheritor),
+		state(Inheritor, alive).
+
 canMarry(X, Y):- 
 		gender(X, GX), state(X, alive), house(HX, X),
-		not(marriedWith(X, PX); married(X, PX)), 
+		not(marriedWith(X, PX)), 
 		(GX == man, gender(Y, woman); GX == woman, gender(Y, man)),
 		state(Y, alive), house(HY, Y), (HX \= HY),
-		not(marriedWith(Y, PY); married(Y, PY)).
-		
+		not(marriedWith(Y, PY)).
+
+
 
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
 % [DONE ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
-% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
+% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey de una casa.
 % [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
 % [DONE ] canmarry (Regla)  		   -> Dependiendo del estado de vida y la relacion del
