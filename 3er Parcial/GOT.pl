@@ -16,6 +16,9 @@ house(tully,catelyn).
 house(tully,lysa).
 house(tully,edmure).
 house(tully,hoster).
+house(tully,robin).
+house(arryn, jon).
+house(tyrell,mace).
 house(tyrell,willas).
 house(tyrell,garlan).
 house(tyrell,margaery).
@@ -49,10 +52,11 @@ house(greyjoy,maron).
 house(greyjoy,rodrik).
 house(greyjoy,theon_greyjoy).
 
-house(House_name,Person) :-
-	marriedWith(Person,Partner),
-	house(House_name,Partner),
-	!.
+belongsHouses(House_name,Person):- 
+		house(House_name,Person).
+belongsHouses(House_name,Person):- 
+		marriedWith(Person,Partner), 
+		house(House_name,Partner).
 % End of Casas
 
 % Reyes
@@ -238,26 +242,28 @@ areEnemies(House_A, House_B):-
 rivals(sandor_clegane, ser_gregor_clegane).
 rivals(balon, robert).
 
+areRivals(Person_A, Person_B):-
+		(rivals(Person_A, Person_B); rivals(Person_B, Person_A)),
+		(Person_A \= Person_B).
 %Fin de rivales
 
 % Reglas generales
 inheritsHouse(House,Person) :-
 		king(House,Parent),
-		%house(House,Person), -- Inestable
-		gender(Person,man),
 		parent(Parent,Person),
+		gender(Person,man),
 		not(state(Person, exiled)),
 		not(state(Person, disinherited)).
 
 family(X,Y) :-
-		house(Z,X),
-		house(Z,Y),
+		belongsHouses(Z,X),
+		belongsHouses(Z,Y),
 		X \= Y.
 		
 canInherit(House,Person) :-
 		inheritsHouse(House,Person).
 canInherit(House,Person) :-
-		house(House,Person),
+		belongsHouses(House,Person),
 		gender(Person,man),
 		not(state(Person, exiled)),
 		not(state(Person, disinherited)),
@@ -269,20 +275,20 @@ inheritor(House, Inheritor):-
 		state(Inheritor, alive).
 
 canMarry(X, Y):- 
-		gender(X, GX), state(X, alive), house(HX, X),
+		gender(X, GX), state(X, alive), belongsHouses(HX, X),
 		not(marriedWith(X, PX)), 
 		(GX == man, gender(Y, woman); GX == woman, gender(Y, man)),
-		state(Y, alive), house(HY, Y), (HX \= HY),
+		state(Y, alive), belongsHouses(HY, Y), (HX \= HY),
 		not(marriedWith(Y, PY)).
 
 
 
 % A AGREGAR %
-% [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
-% [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
-% [DONE ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
-% [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey de una casa.
-% [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
-                                    %Esto puede que de problemas al usar la regla canmarry.
+% [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado/Desheredado)
+% [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien.
+% [DONE ] Numero de Nacimiento (Hecho) -> Orden de nacimiento.
+% [DONE ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey de una casa.
+% [DONE ] Reinos enemigos (Hecho)      -> Los reinos que son enemigos.
+%                                      ***Esto puede que de problemas al usar la regla canmarry.***
 % [DONE ] canmarry (Regla)  		   -> Dependiendo del estado de vida y la relacion del
-                                        %reino, ver cuales descendientes pueden casarse
+%                                      reino, ver cuales descendientes pueden casarse.
