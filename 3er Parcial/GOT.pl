@@ -77,8 +77,7 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-marriedWith(Person,Partner):-married(Partner,Person).
-
+marriedWith(Person,Partner):- married(Partner,Person).
 
 siblings([benjen,brandon,lyanna,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
@@ -105,26 +104,12 @@ descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
 descendance(jon, 	  [robin]).
 descendance(lysa, 	  [robin]).
-descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
-descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
+descendance(eddard,   [jon_snow, robb, sansa, arya, bran, rickon]).
+descendance(catelyn,  [robb, sansa, arya, bran, rickon]).
 
-parent(robert,joffrey).
-parent(cersei,joffrey).
-parent(aerys_ii,rhaegar).
-parent(aerys_ii,daenerys).
-parent(rhaella,rhaegar).
-parent(rhaella,daenerys).
-parent(eddard,robb).
-parent(eddard,sansa).
-parent(eddard,arya).
-parent(eddard,bran).
-parent(eddard,rickon).
-parent(catelyn,robb).
-parent(catelyn,sansa).
-parent(catelyn,arya).
-parent(catelyn,bran).
-parent(catelyn,rickon).
-parent(rickard,eddard).
+parent(Parent, Person):-
+	descendance(Parent, Descendance),
+	member(Person, Descendance).
 % Fin de Relaciones
 
 % Generos
@@ -190,7 +175,7 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
-state(Person, alive).
+state(_, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
