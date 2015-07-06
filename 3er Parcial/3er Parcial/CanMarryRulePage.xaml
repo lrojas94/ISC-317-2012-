@@ -3,19 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d"
+      mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="400"
-	Title="CaMarryRulePage">
+	Title="CanMarryRulePage">
 
-    <Grid Background="#FFECF0F1" Margin="0,0,-156,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Personaje" HorizontalAlignment="Left" Height="26" Margin="24,48,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.87,0.34" FontFamily="Jaapokki"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="6,79,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="236,79,0,52" Stroke="Black" Width="390" Height="200"/>
-        <Label HorizontalContentAlignment="Center" Content="Can Marry" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="505" FontFamily="Jaapokki"/>
-        <Rectangle  HorizontalAlignment="Left" Height="30" Stroke="Black" VerticalAlignment="Top" Width="390" Margin="10,41,10,0"/>
+    <Grid Background="#FFECF0F1" Margin="0,0,-188,0">
+        <Label x:Name="titleCanMarry" HorizontalContentAlignment="Center" Content="Can Marry" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="400" FontFamily="Jaapokki" FontSize="14"/>
+        <Label x:Name="titlepersonaje" Content="Personaje" HorizontalAlignment="Left" Height="32" Margin="0,36,0,0" VerticalAlignment="Top" Width="163" FontFamily="Jaapokki" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="0,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147"/>
+        <Label x:Name="personajeLabel" Content="Personaje" HorizontalAlignment="Left" Height="30" Margin="212,68,0,0" VerticalAlignment="Top" Width="180
+               " Background="#FF2C3E50"/>
+        <Label x:Name="houseLabel" Content="House" HorizontalAlignment="Left" Height="30" Margin="393,68,-187,0" VerticalAlignment="Top" Width="190" Background="#FF2C3E50"/>
+
+
     </Grid>
 </Page>

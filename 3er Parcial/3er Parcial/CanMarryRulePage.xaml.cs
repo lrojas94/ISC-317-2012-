@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace _3er_Parcial
 {
     /// <summary>
-    /// Interaction logic for CaMarryRulePage.xaml
+    /// Interaction logic for CanMarryRulePage.xaml
     /// </summary>
     public partial class CanMarryRulePage : Page
     {
         public CanMarryRulePage()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
