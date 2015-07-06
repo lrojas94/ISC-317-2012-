@@ -79,9 +79,9 @@ married(elia,rhaegar).
 married(khal_drogo,daenerys).
 married(Person,Partner):- married(Partner,Person), !.
 	
-siblings([benjen,brandon,lyanina,eddard]).
+siblings([benjen,brandon,lyanna,eddard]).
 siblings([robb,sansa,arya,bran,rickon,jon_snow]).
-siblings([catelyn,lisa,edmure]).
+siblings([catelyn,lysa,edmure]).
 siblings([joffrey,myrcella,tommen]).
 siblings([cersei,ser_jaime,tyrion]).
 siblings([willas,garlan,margaery,loras_tyrell]).
@@ -100,10 +100,10 @@ descendance(tywin,    [cersei, ser_jaime, tyrion]).
 descendance(robert,   [joffrey, myrcella, tommen]).
 descendance(cersei,   [joffrey, myrcella, tommen]).
 descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
-descendance(rickard,  [benjen, brandon, lyanna]).
-descendance(hoster,   [catelyn, lisa, edmure]).
+descendance(rickard,  [benjen, brandon, lyanna, eddard]).
+descendance(hoster,   [catelyn, lysa, edmure]).
 descendance(jon, 	  [robin]).
-descendance(lisa, 	  [robin]).
+descendance(lysa, 	  [robin]).
 descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
 descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
 
@@ -179,7 +179,7 @@ gender(renly,woman).
 %Inicio de Estado de Vida
 state(eddard,dead).
 state(catelyn,dead).
-state(lusa,dead).
+state(lysa,dead).
 state(robb,dead).
 state(tywin,dead).
 state(robert,dead).
@@ -189,6 +189,7 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
+state(Person, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
@@ -227,7 +228,7 @@ canInherit(House,Person) :-
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado)
 % [DONE ] Estado de Muertes (Hecho)    -> Quien mata a quien
-% [ ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
+% [DONE ] Numero de Nacimiento (Hecho) -> Orden de nacimiento
 % [ ] Heredero al Trono (Regla)    -> Hijo hombre, mayor, vivo e hijo de Rey.
 % [DONE ] Reinos enemigos (Hecho)   -> Los reinos que son enemigos
                                     %Esto puede que de problemas al usar la regla canmarry.
