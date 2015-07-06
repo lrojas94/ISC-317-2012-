@@ -1,3 +1,8 @@
+% Funciones Basicas
+member(Member,[]):- false.
+member(Member,[Member|List]) :- true,!.
+member(Member,[Elem|List]) :- member(Member,List).
+
 % Casas
 house(frey,walder).
 house(frey,joyeuse).
@@ -104,7 +109,7 @@ descendance(cersei,   [joffrey, myrcella, tommen]).
 descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
 descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
-descendance(jon, 	  [robin]).
+descendance(jon, 	    [robin]).
 descendance(lysa, 	  [robin]).
 descendance(eddard,   [robb, sansa, arya, bran, rickon, jon_snow]).
 descandance(catelyn,  [robb, sansa, arya, bran, rickon]).
@@ -191,7 +196,7 @@ state(joffrey,dead).
 state(khal_drogo,dead).
 state(viserys,dead).
 state(the_hound,dead).
-state(_, alive).
+state(Person, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes

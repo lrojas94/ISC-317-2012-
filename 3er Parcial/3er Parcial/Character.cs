@@ -109,8 +109,17 @@ namespace _3er_Parcial
         public List<string> Siblings {
             get{
                 if (siblings == null) {
-                   // string query = String.Format()
-                    //PrologResult data = PrologHandler.Instance.Query()
+                    string query = String.Format("siblings({0},Sib).", name);
+                    PrologResult data = PrologHandler.Instance.Query(query);
+                    siblings = new List<string>();
+                    if (data.Status == Prolog.ExecutionResults.Success) {
+                        //We're sure it HAS to return only 1 Variable result.
+                        string unparsedData = data.Vars[0]["Sib"];
+                        unparsedData = unparsedData.Replace("[", "");
+                        unparsedData = unparsedData.Replace("]", "");
+                        siblings = unparsedData.Split(',').ToList();
+                    }
+
                 }
 
                 return siblings;
