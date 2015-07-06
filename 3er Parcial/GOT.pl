@@ -104,7 +104,7 @@ descendance(cersei,   [joffrey, myrcella, tommen]).
 descendance(mace, 	  [willas, garlan, margaery, loras_tyrell]).
 descendance(rickard,  [benjen, brandon, lyanna, eddard]).
 descendance(hoster,   [catelyn, lysa, edmure]).
-descendance(jon, 	  [robin]).
+descendance(jon, 	    [robin]).
 descendance(lysa, 	  [robin]).
 descendance(eddard,   [jon_snow, robb, sansa, arya, bran, rickon]).
 descendance(catelyn,  [robb, sansa, arya, bran, rickon]).

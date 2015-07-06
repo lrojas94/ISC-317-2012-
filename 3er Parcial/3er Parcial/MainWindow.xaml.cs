@@ -22,7 +22,7 @@ namespace _3er_Parcial
     {
         public MainWindow()
         {
-
+            PrologHandler.Instance.LoadFile(@"..\..\..\prologBasics.pl");
             PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
             InitializeComponent();
             charactersFrame.Content = new CharactersPage();
