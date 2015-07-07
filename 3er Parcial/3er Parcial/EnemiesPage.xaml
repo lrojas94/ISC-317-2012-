@@ -9,7 +9,6 @@
       Title="EnemiesPage">
     <Page.Resources>
         <local:MathConverter x:Key="MathConverter" />
-        <local:CenterConverter x:Key="CenterConverter"/>
     </Page.Resources>
     <Grid x:Name="grid"  Background="#FFECF0F1" Margin="0">
         <DockPanel x:Name="panel" Margin="0,0,0,0"  LastChildFill="False">
@@ -19,9 +18,9 @@
                 ConverterParameter=@VALUE/2-15}" Margin="10,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             <TextBox x:Name="characterBTB" Height="25"  TextWrapping="Wrap" Text="Personaje B" VerticalAlignment="Top" DockPanel.Dock="Right" Width="{Binding ElementName=characterATB,Path=Width}" Margin="5,10,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </DockPanel>
-        <Button x:Name="button" Content="Compruebalo Ahora!" Height="25" DockPanel.Dock="Top" VerticalAlignment="Top"  Margin="10,80,10,0" Background="#FFF39C12" BorderBrush="#FFD35400" BorderThickness="1" FontFamily="Lato" Foreground="White"/>
-        <Image x:Name="characterImageA" Width="{Binding ElementName=characterATB, Path=Width}" Margin="10,120,0,10" HorizontalAlignment="Left"/>
-        <Image x:Name="characterImageB" Width="{Binding ElementName=characterATB, Path=Width}" Margin="0,120,10,10" HorizontalAlignment="Right"/>
-        <Image x:Name="result" HorizontalAlignment="Left" Height="50" Margin="{Binding ElementName=grid,Path=.,Converter={StaticResource CenterConverter}, ConverterParameter='25,-25'}" VerticalAlignment="Top" Width="50"/>
+        <Button x:Name="testEnemies" Content="Compruebalo Ahora!" Height="25" VerticalAlignment="Top"  Margin="10,80,10,0" Background="#FFF39C12" BorderBrush="#FFD35400" BorderThickness="1" FontFamily="Lato" Foreground="White" Click="testEnemies_Click"/>
+        <Image x:Name="characterImageA" Width="{Binding ElementName=characterATB, Path=ActualWidth}" Margin="10,120,0,10" HorizontalAlignment="Left" Source="Images/none.png" Stretch="UniformToFill" VerticalAlignment="Center"/>
+        <Image x:Name="characterImageB" Width="{Binding ElementName=characterATB, Path=ActualWidth}" Margin="0,120,10,10" HorizontalAlignment="Right" Source="Images/none.png" Stretch="UniformToFill" VerticalAlignment="Center"/>
+        <Image x:Name="result" Height="50" VerticalAlignment="Center" Source="Images/enemies.png" Margin="0,25,0,0"/>
     </Grid>
 </Page>

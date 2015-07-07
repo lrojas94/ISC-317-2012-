@@ -21,7 +21,7 @@
         </ComboBox>
         <Label x:Name="characterListLabel" Content="Personajes de la Serie" VerticalAlignment="Top" RenderTransformOrigin="2.396,0.689" Margin="0,10,10,0" HorizontalAlignment="Right" Width="125"/>
         <DockPanel LastChildFill="True" Margin="0,0,0,10">
-            <Image DockPanel.Dock="Left" x:Name="houseImage" DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}" Source="{Binding Path=HouseImage}" HorizontalAlignment="Left" Margin="10,80,0,0" Width="150" Stretch="Fill"/>
+            <Image x:Name="houseImage" DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}" Source="{Binding Path=HouseImage}" Margin="10,80,0,0" Width="150" Stretch="UniformToFill" VerticalAlignment="Center"/>
             <Image DockPanel.Dock="Left" x:Name="crownImage" DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}"
                    Source="{Binding Path=IsKing}" Height="16" Width="16" Margin="-265,90,0,0" VerticalAlignment="Top" Panel.ZIndex="1"/>
             <Label DockPanel.Dock="Top" x:Name="characterName" DataContext ="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}"  Content="{Binding Path=FormattedName}" VerticalAlignment="Top" Margin="10,80,10,0" FontFamily="Jaapokki" FontSize="20"/>
