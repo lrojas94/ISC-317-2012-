@@ -53,9 +53,9 @@ namespace _3er_Parcial
             return null;
         }
 
-        public List<Tuple<string, string>> CandidatesToMarry(string victim)
+        public List<Character> CandidatesToMarry(string victim)
         {
-            List<Tuple<string, string>> candidates = new List<Tuple<string, string>>();
+            List<Character> candidates = new List<Character>();
 
             // Todos los candidatos al matrimonio de la "victima"
             PrologResult result = PrologHandler.Instance.Query("canMarry(" + victim + ", Candidate).");
@@ -63,14 +63,8 @@ namespace _3er_Parcial
             {
                 foreach (Dictionary<string, string> _result in result.Vars)
                 {
-                    PrologResult subresult = PrologHandler.Instance.Query("house(House," + _result["Candidate"] + ").");
-
-                    candidates.Add(new Tuple<string, string>(_result["Candidate"], subresult.Vars[0]["House"]));
+                    candidates.Add(FindCharacterWith(_result["Candidate"]));
                 }
-            }
-            else
-            {
-                candidates.Add(new Tuple<string,string>("none","none"));
             }
 
             return candidates;
