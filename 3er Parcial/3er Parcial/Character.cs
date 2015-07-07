@@ -21,7 +21,11 @@ namespace _3er_Parcial
         private List<string> siblings;
         private string kingOfHouse = null;
 
-        
+        public override string ToString()
+        {
+            return FormattedName;
+        }
+
         public string Name {
             get {
                 return name;

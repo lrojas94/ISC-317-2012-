@@ -31,21 +31,18 @@ namespace _3er_Parcial
             Character _result = Instance.FindCharacterWith(personajeTextbox.Text);
 
             if (_result == null)
-                return;
-
-            List<Tuple<string,string>> candidates = Instance.CandidatesToMarry(_result.Name);
-
-            List<string> persons = new List<string>();
-            List<string> houses =  new List<string>();
-
-            foreach (Tuple<string, string> pair in candidates)
             {
-                persons.Add(pair.Item1);
-                houses.Add(pair.Item2);
+                MessageBox.Show("Su personaje no ha sido encontrado.");
+                return;
             }
 
-            personajesList.ItemsSource = persons;
-            houseList.ItemsSource = houses;
+            List<Character> candidates = Instance.CandidatesToMarry(_result.Name);
+            personajesList.ItemsSource = candidates;
+            if (candidates.Count > 0)
+                personajesList.SelectedIndex = 0;
+            else {
+                MessageBox.Show("Lo Sentimos, Su personaje no puede casarse...");
+            }
         }
     }
 }
