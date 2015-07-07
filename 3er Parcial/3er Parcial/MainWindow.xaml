@@ -8,14 +8,14 @@
         Title="MainWindow" Height="400" Width="600">
     <Grid>
         <TabControl x:Name="tabControl">
-            <TabItem x:Name="charactersTab" Header="Personajes" Margin="-2,-2,-2,2">
-                <Frame x:Name="charactersFrame" Content="Enemigos" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
+            <TabItem Header="Personajes">
+                <Frame x:Name="charactersFrame" Content="To be Replaced by Characters" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
             </TabItem>
-            <TabItem Header="Enemies">
+            <TabItem Header="Enemies" >
                 <Frame x:Name="enemiesFrame" Content="To be replaced by EnemiesPage" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
             </TabItem>
-	    <TabItem x:Name="canmarryTab" Header="Can Marry" Height="22" VerticalAlignment="Top">
-                <Frame x:Name="canmarryFrame" Content="Frame" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
+	        <TabItem Header="Can Marry">
+                <Frame x:Name="canmarryFrame" Content="To be replaced by CanMarry" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
             </TabItem>
         </TabControl>
     </Grid>
