@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace _3er_Parcial
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EnemiesPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EnemiesPage : Page
     {
-        public MainWindow()
+        public EnemiesPage()
         {
-            PrologHandler.Instance.LoadFile(@"..\..\..\prologBasics.pl");
-            PrologHandler.Instance.LoadFile(@"..\..\..\GOT.pl");
             InitializeComponent();
-            charactersFrame.Content = new CharactersPage();
-            enemiesFrame.Content = new EnemiesPage();
-               
         }
     }
 }

@@ -28,8 +28,8 @@
             <Label DockPanel.Dock="Top" x:Name="characterName" DataContext ="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}"  Content="{Binding Path=Name}" VerticalAlignment="Top" Margin="10,80,10,0" FontFamily="Jaapokki" FontSize="20"/>
             
             <Label DockPanel.Dock="Top" x:Name="characterHouses" DataContext ="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}" Content="{Binding Path=Houses}" Margin="10,2,10,0" FontFamily="Lato Thin" FontSize="16" VerticalAlignment="Top"/>
-            <Label DockPanel.Dock="Top" x:Name="label" Content="Siblings"  VerticalAlignment="Top" FontFamily="Lato Thin" FontSize="13.333" Background="#FF2C3E50" Foreground="White" Margin="10,0"/>
-            <ListBox DockPanel.Dock="Top" x:Name="siblingsList" DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}" ItemsSource="{Binding FormattedSiblings}" Margin="10,0" VerticalContentAlignment="Stretch" BorderBrush="#FF34495E" BorderThickness="0,2,0,0"/>
+            <Label DockPanel.Dock="Top" x:Name="label" Content="Siblings"  VerticalAlignment="Top" FontFamily="Lato Thin" FontSize="13.333" Background="#FF2C3E50" Foreground="White" Margin="10,0" HorizontalContentAlignment="Center"/>
+            <ListBox DockPanel.Dock="Top" x:Name="siblingsList" DataContext="{Binding ElementName=CharacterNamesCB,Path=SelectedItem}" ItemsSource="{Binding FormattedSiblings}" Margin="10,0" VerticalContentAlignment="Stretch" BorderBrush="#FFF1C40F" BorderThickness="0,2,0,0"/>
             
 
         </DockPanel>
