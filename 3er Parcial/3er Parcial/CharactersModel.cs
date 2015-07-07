@@ -39,10 +39,27 @@ namespace _3er_Parcial
             foreach (Dictionary<String, String> character in characterBasics.Vars) {
                 string name = character["Name"];
                 string gender = character["Gender"];
-                
+
                 Character newCharacter = new Character(name, gender);
                 characters.Add(newCharacter);
             }
+        }
+        public Character FindCharacterWith(string name) {
+            name = name.ToLower();
+            name = name.Replace(' ', '_');
+            foreach (Character c in characters)
+                if (c.Name == name)
+                    return c;
+            return null;
+        }
+
+
+        public bool AreEnemies(Character charOne, Character charTwo) {
+            string query = String.Format("areRivals({0},{1})", charOne.Name, charTwo.Name);
+            PrologResult result = PrologHandler.Instance.Query(query);
+            if (result.Status == Prolog.ExecutionResults.Success)
+                return true;
+            return false;
         }
     }
 }

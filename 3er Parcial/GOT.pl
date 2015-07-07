@@ -52,10 +52,10 @@ house(greyjoy,maron).
 house(greyjoy,rodrik).
 house(greyjoy,theon_greyjoy).
 
-belongsHouses(House_name,Person):- 
+belongsHouses(House_name,Person):-
 		house(House_name,Person).
-belongsHouses(House_name,Person):- 
-		marriedWith(Person,Partner), 
+belongsHouses(House_name,Person):-
+		marriedWith(Person,Partner),
 		house(House_name,Partner).
 % End of Casas
 
@@ -85,11 +85,11 @@ married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
 
-marriedWith(Person,Partner):-	
-		married(Person,Partner), 
+marriedWith(Person,Partner):-
+		married(Person,Partner),
 		state(Partner, alive), !.
-marriedWith(Person,Partner):-	
-		married(Partner,Person), 
+marriedWith(Person,Partner):-
+		married(Partner,Person),
 		state(Person, alive).
 
 siblings([benjen,brandon,lyanna,eddard]).
@@ -102,7 +102,7 @@ siblings([rhaegar,viserys,daenerys]).
 siblings([rhaenys,aegon]).
 siblings([stannis,renly,robert]).
 siblings([tywin,kevan]).
-siblings(Person,Siblings) :- 
+siblings(Person,Siblings) :-
 		siblings(Generation),member(Person,Generation),
 		delete(Generation,Person,Siblings).
 
@@ -243,18 +243,19 @@ enemies(grejoy,baratheon).
 
 areEnemies(House_A, House_B):- enemies(House_A, House_B), (House_A \= House_B).
 areEnemies(House_A, House_B):- enemies(House_B, House_A), (House_A \= House_B).
-		
+
 %Fin de reinos enemigos
 
 %Inicio de rivales
 rivals(sandor_clegane, ser_gregor_clegane).
 rivals(balon, robert).
 
-areRivals(Person_A, Person_B):- 
+areRivals(Person_A, Person_B):-
 		rivals(Person_A, Person_B), (Person_A \= Person_B).
-areRivals(Person_A, Person_B):- 
+areRivals(Person_A, Person_B):-
 		rivals(Person_B, Person_A), (Person_A \= Person_B).
-		
+areRivals(CharacterA,CharacterB):-belongsHouses(HouseA,CharacterA),belongsHouses(HouseB,CharacterB),areEnemies(HouseA,HouseB).
+
 %Fin de rivales
 
 % Reglas generales
@@ -281,7 +282,7 @@ family(X,Y) :-
 		belongsHouses(Z,X),
 		belongsHouses(Z,Y),
 		X \= Y.
-		
+
 canInherit(House,Person) :-
 		inheritsHouse(House,Person).
 
@@ -306,7 +307,7 @@ canInherit(House,Person) :-
 		gender(Person,man),
 		parent(Parent, Person),
 		inheritsHouse(House,Parent).
-		
+
 
 inheritor(House, Inheritor):-
 		canInherit(House, Inheritor),

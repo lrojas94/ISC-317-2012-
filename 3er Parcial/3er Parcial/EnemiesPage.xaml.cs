@@ -23,6 +23,7 @@ namespace _3er_Parcial
         public EnemiesPage()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -21,7 +21,13 @@ namespace _3er_Parcial
         private List<string> siblings;
         private string kingOfHouse = null;
 
+        
         public string Name {
+            get {
+                return name;
+            }
+        }
+        public string FormattedName {
             get {
                 string tempName = "";
                 tempName = name.Replace('_', ' ');
