@@ -22,3 +22,4 @@ La idea es presentar esto como un arbol genealogico en el cual se muestra su des
 ### TODO
 - [X] Funcionalidad de busqueda.
 - [X] Diseño general de la aplicacion.
+
