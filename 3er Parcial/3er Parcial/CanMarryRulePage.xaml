@@ -14,6 +14,6 @@
         <Label x:Name="houseLabel" Content="House" Height="36" Margin="205,118,10,0" VerticalAlignment="Top" Background="#FF2C3E50" FontFamily="Lato Thin" Foreground="White" FontSize="16"/>
         <ListBox x:Name="personajesList" Height="135" Margin="10,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185"/>
         <ListBox x:Name="houseList" Height="134" Margin="205,153,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="buscarbtn" Content="Buscar" Height="30" Margin="10,77,10,0" VerticalAlignment="Top" Background="#FFF39C12" BorderThickness="1" BorderBrush="#FFD35400" FontFamily="Lato Thin" FontSize="18" Foreground="White"/>
+        <Button x:Name="buscarbtn" Content="Buscar" Height="30" Margin="10,77,10,0" VerticalAlignment="Top" Background="#FFF39C12" BorderThickness="1" BorderBrush="#FFD35400" FontFamily="Lato Thin" FontSize="18" Foreground="White" Click="buscarbtn_Click"/>
     </Grid>
 </Page>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows;
+using System.Windows.Controls;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,6 +159,24 @@ namespace _3er_Parcial
             }
 
             return tmp;
+        }
+    }
+
+    public class CenterConverter : IValueConverter {
+        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Grid element = value as Grid;
+            string[] parameters = (parameter as string).Split(',');
+            if (parameters.Length > 2)
+                return null;
+            int halfWidth = System.Convert.ToInt32(parameters[0]);
+            int halfHeight = System.Convert.ToInt32(parameters[1]);
+            return new Thickness(element.ActualWidth / 2 - halfWidth, element.ActualHeight / 2 - halfHeight, 0, 0);
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
         }
     }
 }
