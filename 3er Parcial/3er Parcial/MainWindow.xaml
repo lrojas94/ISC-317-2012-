@@ -11,10 +11,10 @@
             <TabItem Header="Personajes">
                 <Frame x:Name="charactersFrame" Content="To be Replaced by Characters" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
             </TabItem>
-            <TabItem Header="Enemies" >
+            <TabItem Header="Enemigos" >
                 <Frame x:Name="enemiesFrame" Content="To be replaced by EnemiesPage" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
             </TabItem>
-	        <TabItem Header="Can Marry">
+	        <TabItem Header="Matrimonios">
                 <Frame x:Name="canmarryFrame" Content="To be replaced by CanMarry" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
             </TabItem>
             <TabItem Header="Heredero">
