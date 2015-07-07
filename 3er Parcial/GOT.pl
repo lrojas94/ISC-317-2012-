@@ -254,7 +254,10 @@ areRivals(Person_A, Person_B):-
 		rivals(Person_A, Person_B), (Person_A \= Person_B).
 areRivals(Person_A, Person_B):-
 		rivals(Person_B, Person_A), (Person_A \= Person_B).
-areRivals(CharacterA,CharacterB):-belongsHouses(HouseA,CharacterA),belongsHouses(HouseB,CharacterB),areEnemies(HouseA,HouseB).
+areRivals(CharacterA,CharacterB):-
+	belongsHouses(HouseA,CharacterA),
+	belongsHouses(HouseB,CharacterB),
+	areEnemies(HouseA,HouseB).
 
 %Fin de rivales
 
