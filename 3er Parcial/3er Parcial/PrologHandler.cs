@@ -56,7 +56,7 @@ namespace _3er_Parcial
             }
         }
 
-        public void LoadFile(string filePath) {
+        /*public void LoadFile(string filePath) {
             string text = System.IO.File.ReadAllText(filePath);
             Regex reg = new Regex(@"%.*"); //Remove all comments
             text = reg.Replace(text, "");
@@ -66,7 +66,7 @@ namespace _3er_Parcial
                 program.Add(sentence);
             }
             
-        }
+        }*/
 
         public PrologResult Query(string query) {
             

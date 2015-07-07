@@ -78,9 +78,8 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-marriedWith(Person,Partner):-
-		married(Person,Partner);
-		married(Partner,Person).
+marriedWith(Person,Partner):-	married(Person,Partner).
+marriedWith(Person,Partner):-	married(Partner,Person).
 
 siblings([benjen,brandon,lyanna,eddard]).
 siblings([jon_snow,robb,sansa,arya,bran,rickon]).
@@ -198,13 +197,12 @@ state(aegon,dead).
 state(rhaegar,dead).
 state(elia,dead).
 state(aerys_ii,dead).
+state(viserys,dead).
 state(rhaella,dead).
 
 state(jon_snow,exiled).
 
 state(theon_greyjoy,disinherited).
-state(viserys,disinherited).
-%state(daenerys,disinherited).	-- Confuso por la imagen fuente.
 
 state(Person, alive):- 
 	not(state(Person, dead)), 
@@ -233,18 +231,20 @@ enemies(lannister,targaryen).
 enemies(grejoy,stark).
 enemies(grejoy,baratheon).
 
-areEnemies(House_A, House_B):- 
-		(enemies(House_A, House_B); enemies(House_B, House_A)),
-		(House_A \= House_B).
+areEnemies(House_A, House_B):- enemies(House_A, House_B), (House_A \= House_B).
+areEnemies(House_A, House_B):- enemies(House_B, House_A), (House_A \= House_B).
+		
 %Fin de reinos enemigos
 
 %Inicio de rivales
 rivals(sandor_clegane, ser_gregor_clegane).
 rivals(balon, robert).
 
-areRivals(Person_A, Person_B):-
-		(rivals(Person_A, Person_B); rivals(Person_B, Person_A)),
-		(Person_A \= Person_B).
+areRivals(Person_A, Person_B):- 
+		rivals(Person_A, Person_B), (Person_A \= Person_B).
+areRivals(Person_A, Person_B):- 
+		rivals(Person_B, Person_A), (Person_A \= Person_B).
+		
 %Fin de rivales
 
 % Reglas generales
