@@ -44,7 +44,9 @@ namespace _3er_Parcial
         private void housesCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CharactersModel instance = CharactersModel.Instance;
-            Character inheritor = instance.InheritorOfHouse(e.ToString());
+            Console.Out.Write(e.ToString() + "\n");
+            Console.Out.Write(sender.ToString() + "\n");
+            Character inheritor = instance.InheritorOfHouse(sender.ToString());
 
             Console.Out.Write(inheritor.Name + "\n");
         }
