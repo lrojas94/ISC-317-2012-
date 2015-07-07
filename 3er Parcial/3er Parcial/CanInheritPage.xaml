@@ -4,12 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="400"
 	Title="CanInheritPage">
 
-    <Grid Background="#FFECF0F1" Margin="0,0,-251,0">
-        <Label x:Name="title" Content="Herederos" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="551" HorizontalContentAlignment="Center" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White"/>
-        <TextBox HorizontalAlignment="Left" Height="38" Margin="10,58,0,0" TextWrapping="Wrap" Text="House" VerticalAlignment="Top" Width="196" FontFamily="Lato Thin" FontSize="16" HorizontalContentAlignment="Center"/>
+    <Grid Background="#FFECF0F1" HorizontalAlignment="Left" Width="400">
+        <Label x:Name="title" Content="Herederos" Height="34" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White"/>
+        <TextBox Height="32" Margin="10,39,0,0" TextWrapping="Wrap" Text="House" VerticalAlignment="Top" FontFamily="Lato Thin" FontSize="16" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="315" VerticalContentAlignment="Center"/>
 
 
 

@@ -83,6 +83,9 @@
     <Compile Include="CanInheritPage.xaml.cs">
       <DependentUpon>CanInheritPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CanMarryRulePage.xaml.cs">
+      <DependentUpon>CanMarryRulePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Character.cs" />
     <Compile Include="CharactersModel.cs" />
     <Compile Include="CharactersPage.xaml.cs">

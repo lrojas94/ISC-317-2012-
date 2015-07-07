@@ -7,7 +7,7 @@
       d:DesignHeight="300" d:DesignWidth="400"
 	Title="CanMarryRulePage">
 
-    <Grid Background="#FFECF0F1" Margin="0,0,-188,-150">
+    <Grid Background="#FFECF0F1" Margin="0">
         <Label x:Name="titleCanMarry" HorizontalContentAlignment="Center" Content="Can Marry" Height="36" VerticalAlignment="Top" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White" HorizontalAlignment="Left" Width="588"/>
         <TextBox x:Name="personajeTextbox" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="30" Margin="86,63,0,0" TextWrapping="Wrap" Text="Personaje" VerticalAlignment="Top" Width="184" FontFamily="Lato Thin" HorizontalContentAlignment="Center" FontSize="16"/>
         <Label x:Name="personajeLabel" Content="Personaje" Height="36" Margin="66,119,0,0" VerticalAlignment="Top" Background="#FF2C3E50" FontFamily="Lato Thin" Foreground="White" FontSize="16" HorizontalAlignment="Left" Width="237"/>
