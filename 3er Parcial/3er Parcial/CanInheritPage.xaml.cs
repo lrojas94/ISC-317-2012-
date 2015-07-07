@@ -23,32 +23,16 @@ namespace _3er_Parcial
         public CanInheritPage()
         {
             InitializeComponent();
-            housesCb.ItemsSource = housesCb_FillCombobox();
-            //housesCb.SelectedIndex = 0;
+            housesCB.ItemsSource = CharactersModel.Instance.FormattedHouses;
+            housesCB.SelectedIndex = 0;
         }
 
-        private List<string> housesCb_FillCombobox()
+        private void housesCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            List<string> houses = new List<string>();
-            PrologResult result = PrologHandler.Instance.Query("house(House).");
-            foreach (Dictionary<string, string> _result in result.Vars)
-            {
-                houses.Add(_result["House"]);
-            }
-
-            //housesCb.ItemsSource = houses;
-            return houses;
-        }
-
-        private void housesCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CharactersModel instance = CharactersModel.Instance;
-            Console.Out.Write(e.ToString() + "\n");
-            Console.Out.Write(sender.ToString() + "\n");
-            Character inheritor = instance.InheritorOfHouse(sender.ToString());
-
-            Console.Out.Write(inheritor.Name + "\n");
+            string house = (sender as ComboBox).SelectedItem as string;
+            Character character = CharactersModel.Instance.InheritorOfHouse(house);
+            inheritorName.Content = character.FormattedName;
+            houseImage.Source = character.HouseImage;
         }
     }
 }

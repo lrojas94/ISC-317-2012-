@@ -21,6 +21,37 @@ namespace _3er_Parcial
 
         private PrologResult characterBasics = null;
         private List<Character> characters = new List<Character>();
+        private List<string> houses;
+        private TextInfo Formatter = new CultureInfo("en-US", false).TextInfo;
+
+        public List<String> Houses {
+            get {
+                if (houses == null) {
+                    houses = new List<string>();
+
+                    PrologResult result = PrologHandler.Instance.Query("house(House)");
+                    if (result.Status == Prolog.ExecutionResults.Success) {
+                        houses = result.VariableWithName("House");
+                    }
+                }
+
+                return houses;
+            }
+        }
+
+        public List<string> FormattedHouses {
+            get {
+                List<string> actHouses = Houses;
+                List<string> formatted = new List<string>();
+                foreach (string house in actHouses)
+                    formatted.Add(format(house));
+
+                return formatted;
+            }
+
+
+        }
+        
 
         public List<Character> Characters {
             get
@@ -45,8 +76,7 @@ namespace _3er_Parcial
             }
         }
         public Character FindCharacterWith(string name) {
-            name = name.ToLower();
-            name = name.Replace(' ', '_');
+            name = prologFormat(name);
             foreach (Character c in characters)
                 if (c.Name == name)
                     return c;
@@ -72,6 +102,7 @@ namespace _3er_Parcial
 
         public Character InheritorOfHouse(string housename)
         {
+            housename = prologFormat(housename);
             Character inheritor;
             PrologResult result = PrologHandler.Instance.Query("inheritor(" + housename + ",Inheritor).");
             if (result.Status == Prolog.ExecutionResults.Success)
@@ -93,5 +124,19 @@ namespace _3er_Parcial
                 return true;
             return false;
         }
+
+        private string prologFormat(string s) {
+            s = s.ToLower();
+            s = s.Replace(' ', '_');
+            return s;
+        }
+
+        private string format(string s) {
+            s = s.Replace('_', ' ');
+            s = Formatter.ToTitleCase(s);
+            return s;
+        }
+
+        
     }
 }

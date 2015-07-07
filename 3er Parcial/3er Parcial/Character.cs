@@ -61,7 +61,7 @@ namespace _3er_Parcial
                 string returnValue = "";
                 if (houses == null) {
                     houses = new List<string>();
-                    PrologResult result = PrologHandler.Instance.Query("house(House," + name + ").");
+                    PrologResult result = PrologHandler.Instance.Query("belongsHouses(House," + name + ").");
                     if (result.Status == Prolog.ExecutionResults.Success)
                     {
                         foreach (Dictionary<string, string> _house in result.Vars)
@@ -86,7 +86,7 @@ namespace _3er_Parcial
                             returnValue = houses[0];
                         break;
                     default:
-                        return null;
+                        return "none";
                 }
                 return returnValue;
             }
