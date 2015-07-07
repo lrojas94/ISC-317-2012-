@@ -28,6 +28,7 @@ namespace _3er_Parcial
             charactersFrame.Content = new CharactersPage();
             enemiesFrame.Content = new EnemiesPage();
             canmarryFrame.Content = new CanMarryRulePage();
+            herederoFrame.Content = new CanInheritPage();
                
         }
     }

@@ -17,6 +17,9 @@
 	        <TabItem Header="Can Marry">
                 <Frame x:Name="canmarryFrame" Content="To be replaced by CanMarry" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
             </TabItem>
+            <TabItem Header="Heredero">
+                <Frame x:Name="herederoFrame" Content="To be replaced by Heredero" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
