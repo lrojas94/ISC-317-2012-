@@ -60,13 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CanInheritPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CanMarryRulePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CharactersPage.xaml">
       <SubType>Designer</SubType>
@@ -80,8 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CanInheritPage.xaml.cs">
-      <DependentUpon>CanInheritPage.xaml</DependentUpon>
+    <Compile Include="CanMarryRulePage.xaml.cs">
+      <DependentUpon>CanMarryRulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Character.cs" />
     <Compile Include="CharactersModel.cs" />

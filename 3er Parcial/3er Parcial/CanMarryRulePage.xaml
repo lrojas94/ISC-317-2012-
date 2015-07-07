@@ -7,14 +7,25 @@
       d:DesignHeight="300" d:DesignWidth="400"
 	Title="CanMarryRulePage">
 
-    <Grid Background="#FFECF0F1" Margin="0,0,-188,0">
-        <Label x:Name="titleCanMarry" HorizontalContentAlignment="Center" Content="Can Marry" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="400" FontFamily="Jaapokki" FontSize="14"/>
-        <Label x:Name="titlepersonaje" Content="Personaje" HorizontalAlignment="Left" Height="32" Margin="0,36,0,0" VerticalAlignment="Top" Width="163" FontFamily="Jaapokki" FontSize="14"/>
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="0,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147"/>
-        <Label x:Name="personajeLabel" Content="Personaje" HorizontalAlignment="Left" Height="30" Margin="212,68,0,0" VerticalAlignment="Top" Width="180
-               " Background="#FF2C3E50"/>
-        <Label x:Name="houseLabel" Content="House" HorizontalAlignment="Left" Height="30" Margin="393,68,-187,0" VerticalAlignment="Top" Width="190" Background="#FF2C3E50"/>
-
-
+    <Grid Background="#FFECF0F1" Margin="0,0,-188,-150">
+        <Label x:Name="titleCanMarry" HorizontalContentAlignment="Center" Content="Can Marry" Height="36" VerticalAlignment="Top" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White" HorizontalAlignment="Left" Width="588"/>
+        <TextBox x:Name="personajeTextbox" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="30" Margin="86,63,0,0" TextWrapping="Wrap" Text="Personaje" VerticalAlignment="Top" Width="184" FontFamily="Lato Thin" HorizontalContentAlignment="Center" FontSize="16"/>
+        <Label x:Name="personajeLabel" Content="Personaje" Height="36" Margin="66,119,0,0" VerticalAlignment="Top" Background="#FF2C3E50" FontFamily="Lato Thin" Foreground="White" FontSize="16" HorizontalAlignment="Left" Width="237"/>
+        <Label x:Name="houseLabel" Content="House" HorizontalAlignment="Left" Height="36" Margin="306,119,0,0" VerticalAlignment="Top" Width="237" Background="#FF2C3E50" FontFamily="Lato Thin" Foreground="White" FontSize="16"/>
+        <ListView x:Name="personajesList" HorizontalAlignment="Left" Height="179" Margin="67,156,0,0" VerticalAlignment="Top" Width="235">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="houseList" HorizontalAlignment="Left" Height="180" Margin="306,155,0,0" VerticalAlignment="Top" Width="235">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="buscarbtn" Content="Buscar" HorizontalAlignment="Left" Height="30" Margin="340,63,0,0" VerticalAlignment="Top" Width="143" Background="#d35400" FontFamily="Lato Thin" FontSize="18" Foreground="White"/>
     </Grid>
 </Page>
