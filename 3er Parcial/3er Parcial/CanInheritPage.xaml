@@ -8,14 +8,8 @@
 	Title="CanInheritPage">
 
     <Grid Background="#FFECF0F1">
-        <ComboBox x:Name="housesCb" Height="32" Margin="10,40,10,0" VerticalAlignment="Top">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,2" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Path=Houses}"  VerticalAlignment="Center"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
+        <ComboBox x:Name="housesCb" Height="32" Margin="10,40,10,0" VerticalAlignment="Top" SelectionChanged="housesCb_SelectionChanged">
+            
         </ComboBox>
         <Label x:Name="title" Content="Herederos" Height="34" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White"/>
         <DockPanel HorizontalAlignment="Left" Height="214" LastChildFill="False" Margin="10,76,0,0" VerticalAlignment="Top" Width="380">

@@ -76,6 +76,22 @@ namespace _3er_Parcial
             return candidates;
         }
 
+        public Character InheritorOfHouse(string housename)
+        {
+            Character inheritor;
+            PrologResult result = PrologHandler.Instance.Query("inheritor(" + housename + ",Inheritor).");
+            if (result.Status == Prolog.ExecutionResults.Success)
+            {
+                inheritor = instance.FindCharacterWith(result.Vars[0]["Inheritor"]);
+            }
+            else
+            {
+                inheritor = new Character("none", "none");
+            }
+
+            return inheritor;
+        }
+
         public bool AreEnemies(Character charOne, Character charTwo) {
             string query = String.Format("areRivals({0},{1})", charOne.Name, charTwo.Name);
             PrologResult result = PrologHandler.Instance.Query(query);

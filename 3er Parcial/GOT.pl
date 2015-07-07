@@ -1,4 +1,14 @@
 % Casas
+house(frey).
+house(stark).
+house(tully).
+house(arryn).
+house(tyrell).
+house(baratheon).
+house(lannister).
+house(targaryen).
+house(mormont).
+house(greyjoy).
 house(frey,walder).
 house(frey,joyeuse).
 house(stark,rickard).
