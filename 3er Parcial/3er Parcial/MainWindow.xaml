@@ -12,8 +12,10 @@
                 <Frame x:Name="charactersFrame" Content="Enemigos" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
             </TabItem>
             <TabItem Header="Enemies">
-
                 <Frame x:Name="enemiesFrame" Content="To be replaced by EnemiesPage" Margin="0,0,0,0" ClipToBounds="True" Background="#FFFF"/>
+            </TabItem>
+	    <TabItem x:Name="canmarryTab" Header="Can Marry" Height="22" VerticalAlignment="Top">
+                <Frame x:Name="canmarryFrame" Content="Frame" ClipToBounds="True" Background="#FFEE8383" Margin="0,0,0,0"/>
             </TabItem>
         </TabControl>
     </Grid>

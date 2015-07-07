@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace _3er_Parcial
 {
     /// <summary>
-    /// Interaction logic for CanMarryRulePage.xaml
+    /// Interaction logic for CanInheritPage.xaml
     /// </summary>
-    public partial class CanMarryRulePage : Page
+    public partial class CanInheritPage : Page
     {
-        public CanMarryRulePage()
+        public CanInheritPage()
         {
             InitializeComponent();
         }

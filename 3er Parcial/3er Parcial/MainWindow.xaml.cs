@@ -27,6 +27,7 @@ namespace _3er_Parcial
             InitializeComponent();
             charactersFrame.Content = new CharactersPage();
             enemiesFrame.Content = new EnemiesPage();
+            canmarryFrame.Content = new CanMarryRulePage();
                
         }
     }
