@@ -104,7 +104,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MathConverter.cs" />
+    <Compile Include="Converters.cs" />
     <Compile Include="PrologHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
