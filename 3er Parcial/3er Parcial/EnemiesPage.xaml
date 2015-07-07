@@ -10,20 +10,18 @@
     <Page.Resources>
         <local:MathConverter x:Key="MathConverter" />
     </Page.Resources>
-    <Grid Background="#FFECF0F1" Margin="0">
+    <Grid x:Name="grid"  Background="#FFECF0F1" Margin="0">
         <DockPanel x:Name="panel" Margin="0,0,0,0"  LastChildFill="False">
-            <Label x:Name="label" Content="Amigos o Enemigos? Compruebalo ahora!" Margin="0,0,0,0" VerticalAlignment="Top" DockPanel.Dock="Top" FontFamily="Lato Thin" FontSize="16" HorizontalContentAlignment="Center" Background="#FF2C3E50" Foreground="White" BorderBrush="#FFF1C40F" BorderThickness="0,0,0,5"/>
-            <TextBox x:Name="characterATB" Height="25"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="{Binding ElementName=label,Path=ActualWidth,
+            <Label x:Name="label" Content="Amigos o Enemigos?" Margin="0,0,0,0" VerticalAlignment="Top" DockPanel.Dock="Top" FontFamily="Lato Thin" FontSize="16" HorizontalContentAlignment="Center" Background="#FF2C3E50" Foreground="White" BorderBrush="#FFF1C40F" BorderThickness="0,0,0,5"/>
+            <TextBox x:Name="characterATB" Height="25"  TextWrapping="Wrap" Text="Personaje A" VerticalAlignment="Top" Width="{Binding ElementName=label,Path=ActualWidth,
                 Converter={StaticResource MathConverter},
-                ConverterParameter=@VALUE/2-15}" Margin="10,10,0,0" />
-            <TextBox x:Name="characterBTB" Height="25"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" DockPanel.Dock="Right" Width="{Binding ElementName=characterATB,Path=Width}" Margin="5,10,10,0" />
-            
-
+                ConverterParameter=@VALUE/2-15}" Margin="10,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBox x:Name="characterBTB" Height="25"  TextWrapping="Wrap" Text="Personaje B" VerticalAlignment="Top" DockPanel.Dock="Right" Width="{Binding ElementName=characterATB,Path=Width}" Margin="5,10,10,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </DockPanel>
-
-        <Button x:Name="button" Content="Button" Height="25" DockPanel.Dock="Top" VerticalAlignment="Top" Width="{Binding ElementName=label,Path=ActualWidth}" Margin="0,80,0,0"/>
-        <Image x:Name="characterImageA" DockPanel.Dock="Right" Height="170"  VerticalAlignment="Top" Width="{Binding ElementName=characterATB, Path=Width}" Margin="10,120,0,0" HorizontalAlignment="Left"/>
-        <Image x:Name="characterImageB" DockPanel.Dock="Right" Height="170"  VerticalAlignment="Top" Width="{Binding ElementName=characterATB, Path=Width}" Margin="0,120,10,0" HorizontalAlignment="Right"/>
+        <Button x:Name="button" Content="Compruebalo Ahora!" Height="25" DockPanel.Dock="Top" VerticalAlignment="Top"  Margin="10,80,10,0" Background="#FFF39C12" BorderBrush="#FFD35400" BorderThickness="1" FontFamily="Lato" Foreground="White"/>
+        <Image x:Name="characterImageA" Width="{Binding ElementName=characterATB, Path=Width}" Margin="10,120,0,10" HorizontalAlignment="Left"/>
+        <Image x:Name="characterImageB" Width="{Binding ElementName=characterATB, Path=Width}" Margin="0,120,10,10" HorizontalAlignment="Right"/>
+        <Image x:Name="result" HorizontalAlignment="Left" Height="50" Margin="0,174,0,0" VerticalAlignment="Top" Width="50"/>
 
 
     </Grid>
