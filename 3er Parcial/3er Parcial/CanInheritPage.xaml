@@ -8,23 +8,20 @@
 	Title="CanInheritPage">
 
     <Grid Background="#FFECF0F1">
-        <Label x:Name="title" Content="Herederos" Height="34" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White"/>
-        <DockPanel HorizontalAlignment="Left" Height="214" LastChildFill="False" Margin="10,76,0,0" VerticalAlignment="Top" Width="380">
-            <Image x:Name="houseImage" DockPanel.Dock="Bottom" Width="{Binding ElementName= chosenHouse,Path=Width}" Height="218"  Margin="70,0,70,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.51" Stretch="Fill"/>
-            <Rectangle x:Name="houseRectangle"  DockPanel.Dock="Bottom" Width="{Binding ElementName=chosenHouse,Path=Width}" Fill="#FFF4F4F5" Height="218" Stroke="Black" VerticalAlignment="Top" Margin="70,0,70,0"/>
-        </DockPanel>
-        <ComboBox Height="32" Margin="10,40,10,0" VerticalAlignment="Top">
+        <ComboBox x:Name="housesCb" Height="32" Margin="10,40,10,0" VerticalAlignment="Top">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,2" VerticalAlignment="Center">
-                        <TextBlock VerticalAlignment="Center"/>
-                        
+                        <TextBlock Text="{Binding Path=Houses}"  VerticalAlignment="Center"/>
                     </StackPanel>
-                    
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-
         </ComboBox>
+        <Label x:Name="title" Content="Herederos" Height="34" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="Lato Thin" FontSize="18" BorderThickness="0,0,0,5" BorderBrush="#f1c40f" Background="#2c3e50" Foreground="White"/>
+        <DockPanel HorizontalAlignment="Left" Height="214" LastChildFill="False" Margin="10,76,0,0" VerticalAlignment="Top" Width="380">
+            <Image x:Name="houseImage" DockPanel.Dock="Bottom" Width="{Binding ElementName= housesCb,Path=SelectedItem}" Source="{Binding Path=HouseImage}" Height="218"  Margin="70,0,70,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.51" Stretch="Fill"/>
+        </DockPanel>
+        
 
     </Grid>
 </Page>
