@@ -66,10 +66,16 @@ king(targaryen,aerys_ii).
 king(stark,rickard).
 king(tully,hoster).
 king(frey,walder).
+
+queen(House, Queen):-
+		king(House, King),
+		marriedWith(King, Queen).
+
 % Fin de Reyes
 
 % Relaciones
 married(jon, lysa).
+married(baelish, lysa).
 married(walder,joyeuse).
 married(eddard,catelyn).
 married(joanna,tywin).
@@ -78,8 +84,13 @@ married(robert,cersei).
 married(aerys_ii,rhaella).
 married(elia,rhaegar).
 married(khal_drogo,daenerys).
-marriedWith(Person,Partner):-	married(Person,Partner).
-marriedWith(Person,Partner):-	married(Partner,Person).
+
+marriedWith(Person,Partner):-	
+		married(Person,Partner), 
+		state(Partner, alive), !.
+marriedWith(Person,Partner):-	
+		married(Partner,Person), 
+		state(Person, alive).
 
 siblings([benjen,brandon,lyanna,eddard]).
 siblings([jon_snow,robb,sansa,arya,bran,rickon]).
@@ -185,7 +196,6 @@ state(stannis,dead).
 state(renly,dead).
 state(joffrey,dead).
 state(khal_drogo,dead).
-state(viserys,dead).
 state(the_hound,dead).
 state(maron,dead).
 state(rodrik,dead).
@@ -204,9 +214,9 @@ state(jon_snow,exiled).
 
 state(theon_greyjoy,disinherited).
 
-state(Person, alive):- 
-	not(state(Person, dead)), 
-	not(killedby(Person, Killer)).
+state(Person, alive):- state(Person, dead), !, fail.
+state(Person, alive):- killedby(Person, Killer), !, fail.
+state(Person, alive).
 %Fin de Estado de Vida
 
 %Inicio Estado de Muertes
@@ -252,8 +262,20 @@ inheritsHouse(House,Person) :-
 		king(House,Parent),
 		parent(Parent,Person),
 		gender(Person,man),
-		not(state(Person, exiled)),
-		not(state(Person, disinherited)).
+		state(Person, exiled),
+		!, fail.
+
+inheritsHouse(House,Person) :-
+		king(House,Parent),
+		parent(Parent,Person),
+		gender(Person,man),
+		state(Person, disinherited),
+		!, fail.
+
+inheritsHouse(House,Person) :-
+		king(House,Parent),
+		parent(Parent,Person),
+		gender(Person,man).
 
 family(X,Y) :-
 		belongsHouses(Z,X),
@@ -262,26 +284,47 @@ family(X,Y) :-
 		
 canInherit(House,Person) :-
 		inheritsHouse(House,Person).
+
 canInherit(House,Person) :-
 		belongsHouses(House,Person),
 		gender(Person,man),
-		not(state(Person, exiled)),
-		not(state(Person, disinherited)),
+		state(Person, exiled),
+		parent(Parent, Person),
+		inheritsHouse(House,Parent),
+		!, fail.
+
+canInherit(House,Person) :-
+		belongsHouses(House,Person),
+		gender(Person,man),
+		state(Person, disinherited),
+		parent(Parent, Person),
+		inheritsHouse(House,Parent),
+		!, fail.
+
+canInherit(House,Person) :-
+		belongsHouses(House,Person),
+		gender(Person,man),
 		parent(Parent, Person),
 		inheritsHouse(House,Parent).
+		
 
 inheritor(House, Inheritor):-
 		canInherit(House, Inheritor),
 		state(Inheritor, alive).
 
-canMarry(X, Y):- 
-		gender(X, GX), state(X, alive), belongsHouses(HX, X),
-		not(marriedWith(X, PX)), 
-		(GX == man, gender(Y, woman); GX == woman, gender(Y, man)),
-		state(Y, alive), belongsHouses(HY, Y), (HX \= HY),
-		not(marriedWith(Y, PY)).
-
-
+canMarry(X,Y):- gender(X,GX), gender(Y,GY), GX \= GY, canMarry_(X, Y).
+canMarry_(X,Y):- marriedWith(X,Z),!,fail.
+canMarry_(X,Y):- marriedWith(Y,Z),!,fail.
+canMarry_(X,Y):- belongsHouses(House,X),belongsHouses(House,Y),!,fail.
+canMarry_(X,Y):- state(X,dead),!,fail.
+canMarry_(X,Y):- state(Y,dead),!,fail.
+canMarry_(X,Y):- killedby(X,KX),!,fail.
+canMarry_(X,Y):- killedby(Y,KY),!,fail.
+canMarry_(X,Y):- state(X,exiled),!,fail.
+canMarry_(X,Y):- state(Y,exiled),!,fail.
+canMarry_(X,Y):- state(X,disinherited),!,fail.
+canMarry_(X,Y):- state(Y,disinherited),!,fail.
+canMarry_(X,Y).
 
 % A AGREGAR %
 % [DONE ] Estado de Vida (Hecho)       -> (Muerto/Vivo/Desterrado/Desheredado)
