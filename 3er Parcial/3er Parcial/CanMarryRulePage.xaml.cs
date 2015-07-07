@@ -24,5 +24,28 @@ namespace _3er_Parcial
         {
             InitializeComponent();
         }
+
+        private void buscarbtn_Click(object sender, RoutedEventArgs e)
+        {
+            CharactersModel Instance = CharactersModel.Instance;
+            Character _result = Instance.FindCharacterWith(personajeTextbox.Text);
+
+            if (_result == null)
+                return;
+
+            List<Tuple<string,string>> candidates = Instance.CandidatesToMarry(_result.Name);
+
+            List<string> persons = new List<string>();
+            List<string> houses =  new List<string>();
+
+            foreach (Tuple<string, string> pair in candidates)
+            {
+                persons.Add(pair.Item1);
+                houses.Add(pair.Item2);
+            }
+
+            personajesList.ItemsSource = persons;
+            houseList.ItemsSource = houses;
+        }
     }
 }
